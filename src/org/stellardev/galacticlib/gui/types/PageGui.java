@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.stellardev.galacticlib.gui.IGuiClick;
 import org.stellardev.galacticlib.gui.configuration.GuiDesign;
 import org.stellardev.galacticlib.item.ItemStackWrapper;
+import org.stellardev.galacticlib.util.InvUtil;
 import org.stellardev.galacticlib.util.NumberUtil;
 
 import java.util.*;
@@ -52,7 +53,7 @@ public abstract class PageGui<T> extends RefreshGui implements IClickableGui {
 
         List<T> completeList = getCompleteList();
 
-        int amountPerPage = InventoryUtil.getFreeSlots(inventory);
+        int amountPerPage = InvUtil.getFreeSlots(inventory);
         int maxPage = (int) Math.ceil((double) completeList.size() / (double) amountPerPage) - 1;
         boolean displayButtons = completeList.size() > amountPerPage;
 
