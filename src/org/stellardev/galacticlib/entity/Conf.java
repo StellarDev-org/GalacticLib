@@ -8,6 +8,8 @@ public class Conf extends Entity<Conf> {
     public static Conf get() { return i; }
     public static void set(Conf conf) { i = conf; }
 
+    public String msgInventoryFull = "&7&oYour inventory was full so the item was dropped at your feet.";
+
     public String msgInvalidBoolean = "&e&lGalacticLib &8» &cThe boolean you have entered is invalid. Please use either &ftrue&c or &ffalse&c.";
     public String msgEnabledDisplay = "&aenabled";
     public String msgDisabledDisplay = "&cdisabled";

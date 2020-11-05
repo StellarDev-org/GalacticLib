@@ -1,9 +1,13 @@
 package org.stellardev.galacticlib.util;
 
+import com.massivecraft.massivecore.MassiveCoreMConf;
+import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.util.InventoryUtil;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.stellardev.galacticlib.entity.Conf;
 
 public class InvUtil {
 
@@ -21,5 +25,24 @@ public class InvUtil {
         }
 
         return count;
+    }
+
+    public static void giveItemStack(Player player, ItemStack itemStack) {
+        if(player == null || itemStack == null) return;
+
+        if(player.getInventory().firstEmpty() == -1) {
+            player.getWorld().dropItemNaturally(player.getLocation(), itemStack);
+            MixinMessage.get().msgOne(player, Conf.get().msgInventoryFull);
+        } else {
+            player.getInventory().addItem(itemStack);
+        }
+    }
+
+    public static void removeSingleItemInHand(Player player, ItemStack itemStack) {
+        if(itemStack.getAmount() > 1) {
+            itemStack.setAmount(itemStack.getAmount() - 1);
+        } else {
+            player.setItemInHand(new ItemStack(Material.AIR));
+        }
     }
 }

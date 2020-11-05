@@ -39,6 +39,7 @@
                     <artifactSet>
                         <includes>
                             <include>commons-codec:commons-codec</include>
+                            <include>de.tr7zw.nbtapi:NBTAPI</include>
                         </includes>
                     </artifactSet>
                     <filters>
@@ -49,6 +50,12 @@
                             </excludes>
                         </filter>
                     </filters>
+                    <relocations>
+                        <relocation>
+                            <pattern>de.tr7zw</pattern>
+                            <shadedPattern>org.stellardev.galacticlib.xlib</shadedPattern>
+                        </relocation>
+                    </relocations>
                 </configuration>
             </plugin>
             <plugin>
@@ -84,6 +91,12 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.9</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.tr7zw.nbtapi</groupId>
+            <artifactId>NBTAPI</artifactId>
+            <version>2.5.0</version>
             <scope>compile</scope>
         </dependency>
 
