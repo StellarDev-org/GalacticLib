@@ -64,7 +64,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
-            <scope>provided</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
             <groupId>com.massivecraft.massivecore</groupId>
@@ -81,12 +80,18 @@
             <artifactId>placeholderapi</artifactId>
             <version>2.10.9</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>me.lucko.luckperms</groupId>
+            <artifactId>LuckPerms</artifactId>
+            <version>5.1.15</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.dustplanet.silkspawners</groupId>
+            <artifactId>SilkSpawners</artifactId>
+            <version>6.0.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
