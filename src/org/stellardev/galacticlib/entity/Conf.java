@@ -27,4 +27,13 @@ public class Conf extends Entity<Conf> {
 
     public long guiClickThrottleDelayMs = 200L;
 
+    //--------------------------//
+    // SQL SETTINGS
+    //--------------------------//
+
+    public String sqlDatabaseIp = "172.18.0.1:3306";
+
+    public boolean sqlLogPool = true;
+    public long sqlLogPoolDelayTick = 200L;
+
 }

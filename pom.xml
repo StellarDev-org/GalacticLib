@@ -6,7 +6,7 @@
 
     <groupId>org.stellardev.galactic</groupId>
     <artifactId>GalacticLib</artifactId>
-    <version>1.1.1</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <build>
@@ -40,6 +40,7 @@
                         <includes>
                             <include>commons-codec:commons-codec</include>
                             <include>de.tr7zw.nbtapi:NBTAPI</include>
+                            <include>com.zaxxer:HikariCP</include>
                         </includes>
                     </artifactSet>
                     <filters>
@@ -93,10 +94,16 @@
             <version>1.9</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
+        <dependency> <!-- PROVIDED -->
             <groupId>de.tr7zw.nbtapi</groupId>
             <artifactId>NBTAPI</artifactId>
             <version>2.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.3.1</version>
             <scope>compile</scope>
         </dependency>
 
@@ -121,13 +128,13 @@
             <artifactId>placeholderapi</artifactId>
             <version>2.10.9</version>
         </dependency>
-        <dependency>
+        <dependency> <!-- PROVIDED -->
             <groupId>me.lucko.luckperms</groupId>
             <artifactId>LuckPerms</artifactId>
             <version>5.1.15</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <dependency> <!-- PROVIDED -->
             <groupId>de.dustplanet.silkspawners</groupId>
             <artifactId>SilkSpawners</artifactId>
             <version>6.0.1</version>
