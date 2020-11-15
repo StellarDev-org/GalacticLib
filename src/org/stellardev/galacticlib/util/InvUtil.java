@@ -3,15 +3,17 @@ package org.stellardev.galacticlib.util;
 import com.massivecraft.massivecore.MassiveCoreMConf;
 import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.util.InventoryUtil;
+import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.stellardev.galacticlib.entity.Conf;
 
+@UtilityClass
 public class InvUtil {
 
-    public static int getFreeSlots(Inventory inventory) {
+    public int getFreeSlots(Inventory inventory) {
         inventory = InventoryUtil.clone(inventory, false);
 
         int count = 0;
@@ -27,7 +29,7 @@ public class InvUtil {
         return count;
     }
 
-    public static void giveItemStack(Player player, ItemStack itemStack) {
+    public void giveItemStack(Player player, ItemStack itemStack) {
         if(player == null || itemStack == null) return;
 
         if(player.getInventory().firstEmpty() == -1) {
@@ -38,7 +40,7 @@ public class InvUtil {
         }
     }
 
-    public static void removeSingleItemInHand(Player player, ItemStack itemStack) {
+    public void removeSingleItemInHand(Player player, ItemStack itemStack) {
         if(itemStack.getAmount() > 1) {
             itemStack.setAmount(itemStack.getAmount() - 1);
         } else {

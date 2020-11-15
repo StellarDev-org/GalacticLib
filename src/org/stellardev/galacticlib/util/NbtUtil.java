@@ -2,15 +2,17 @@ package org.stellardev.galacticlib.util;
 
 import com.massivecraft.massivecore.util.InventoryUtil;
 import de.tr7zw.nbtapi.NBTItem;
+import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+@UtilityClass
 public class NbtUtil {
 
-    public static ItemStack setKey(ItemStack itemStack, String key, String value) {
+    public ItemStack setKey(ItemStack itemStack, String key, String value) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -19,7 +21,7 @@ public class NbtUtil {
 
         return nbtItem.getItem();
     }
-    public static ItemStack setKey(ItemStack itemStack, String key, int value) {
+    public ItemStack setKey(ItemStack itemStack, String key, int value) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -28,7 +30,7 @@ public class NbtUtil {
 
         return nbtItem.getItem();
     }
-    public static ItemStack setKey(ItemStack itemStack, String key, long value) {
+    public ItemStack setKey(ItemStack itemStack, String key, long value) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -37,7 +39,7 @@ public class NbtUtil {
 
         return nbtItem.getItem();
     }
-    public static ItemStack setKey(ItemStack itemStack, String key, double value) {
+    public ItemStack setKey(ItemStack itemStack, String key, double value) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -47,7 +49,7 @@ public class NbtUtil {
         return nbtItem.getItem();
     }
 
-    public static boolean hasKey(ItemStack itemStack, String... keys) {
+    public boolean hasKey(ItemStack itemStack, String... keys) {
         if(InventoryUtil.isNothing(itemStack)) return false;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -64,7 +66,7 @@ public class NbtUtil {
 
         return containsAll;
     }
-    public static ItemStack removeKey(ItemStack itemStack, String... keys) {
+    public ItemStack removeKey(ItemStack itemStack, String... keys) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -74,7 +76,7 @@ public class NbtUtil {
         return nbtItem.getItem();
     }
 
-    public static Set<String> getKeySet(ItemStack itemStack) {
+    public Set<String> getKeySet(ItemStack itemStack) {
         if(InventoryUtil.isNothing(itemStack)) return new HashSet<>();
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -82,14 +84,14 @@ public class NbtUtil {
         return nbtItem.getKeys();
     }
 
-    public static String getKeyStringValue(ItemStack itemStack, String key) {
+    public String getKeyStringValue(ItemStack itemStack, String key) {
         if(InventoryUtil.isNothing(itemStack)) return "";
 
         NBTItem nbtItem = new NBTItem(itemStack);
 
         return nbtItem.getString(key);
     }
-    public static int getKeyIntValue(ItemStack itemStack, String key) {
+    public int getKeyIntValue(ItemStack itemStack, String key) {
         if(InventoryUtil.isNothing(itemStack)) return 0;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -98,7 +100,7 @@ public class NbtUtil {
 
         return integer == null? 0 : integer;
     }
-    public static long getKeyLongValue(ItemStack itemStack, String key) {
+    public long getKeyLongValue(ItemStack itemStack, String key) {
         if(InventoryUtil.isNothing(itemStack)) return 0L;
 
         NBTItem nbtItem = new NBTItem(itemStack);
@@ -107,7 +109,7 @@ public class NbtUtil {
 
         return longg == null? 0 : longg;
     }
-    public static double getKeyDoubleValue(ItemStack itemStack, String key) {
+    public double getKeyDoubleValue(ItemStack itemStack, String key) {
         if(InventoryUtil.isNothing(itemStack)) return 0D;
 
         NBTItem nbtItem = new NBTItem(itemStack);

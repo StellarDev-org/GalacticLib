@@ -2,6 +2,7 @@ package org.stellardev.galacticlib.util;
 
 import com.massivecraft.massivecore.util.InventoryUtil;
 import com.massivecraft.massivecore.util.Txt;
+import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -13,25 +14,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@UtilityClass
 public class TxtUtil {
 
     // -------------------------------------------- //
     // COLORIZE & REPLACE
     // -------------------------------------------- //
 
-    public static String parse(String string) {
+    public String parse(String string) {
         return Txt.parse(string);
     }
 
-    public static String parse(String string, Object... args) {
+    public String parse(String string, Object... args) {
         return Txt.parse(string, args);
     }
 
-    public static Collection<String> parse(Collection<String> list) {
+    public Collection<String> parse(Collection<String> list) {
         return Txt.parse(list);
     }
 
-    public static String parseAndReplace(String string, String... replacements) {
+    public String parseAndReplace(String string, String... replacements) {
         if(replacements.length > 0) {
             Iterator<String> iterator = Arrays.asList(replacements).iterator();
 
@@ -51,7 +53,7 @@ public class TxtUtil {
         return parse(string);
     }
 
-    public static List<String> parseAndReplace(List<String> list, String... replacements) {
+    public List<String> parseAndReplace(List<String> list, String... replacements) {
         return list.stream()
                 .map(line -> parseAndReplace(line, replacements))
                 .filter(line -> !line.isEmpty())
@@ -62,12 +64,12 @@ public class TxtUtil {
     // Material name tools
     // -------------------------------------------- //
 
-    public static String getMaterialName(Material material)
+    public String getMaterialName(Material material)
     {
         return Txt.getNicedEnum(material);
     }
 
-    public static String getItemName(ItemStack itemStack)
+    public String getItemName(ItemStack itemStack)
     {
         if (InventoryUtil.isNothing(itemStack)) return Txt.parse("<silver><em>Nothing");
 
