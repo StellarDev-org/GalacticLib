@@ -120,7 +120,7 @@
         </dependency>
         <dependency> <!-- PROVIDED -->
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-jar</artifactId>
+            <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency> <!-- PROVIDED -->
