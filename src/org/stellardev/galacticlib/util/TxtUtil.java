@@ -8,10 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @UtilityClass
@@ -207,5 +204,26 @@ public class TxtUtil {
         }
 
         return color + (presetDisplay != null? presetDisplay : Txt.getMaterialName(itemStack.getType()));
+    }
+
+    // -------------------------------------------- //
+    // SHUFFLE
+    // -------------------------------------------- //
+
+    public static String shuffle(String input) {
+        List<Character> characters = new ArrayList<>();
+
+        for(char c : input.toCharArray()){
+            characters.add(c);
+        }
+
+        StringBuilder output = new StringBuilder(input.length());
+
+        while(characters.size()!=0){
+            int randPicker = (int)(Math.random()*characters.size());
+            output.append(characters.remove(randPicker));
+        }
+
+        return output.toString();
     }
 }
