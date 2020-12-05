@@ -1,8 +1,16 @@
 # GalacticLib #
 In order to use this plugin properly you must also use MassiveCore for all Engine, Command, Integrations, etc. and your plugin should be purely framed around MassiveCore.
 
+## Requirements ##
+In order to use GalacticLib you must include credit in all your plugins, you cannot publish this jar publicly for sale, and you must include in your plugin.yml for each plugin the following lines:
+```yml
+depends:
+- MassiveCore
+- GalacticLib
+```
+
 ## Sample pom.xml ##
-If you'd like to use GalacticLib below is some example pom.xml formats to use when your plugin has an API and doesn't have an API.
+If you'd like to use GalacticLib, below is some example pom.xml formats to use when your plugin has an API and doesn't have an API.
 
 ### No API ###
 ```xml
