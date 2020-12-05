@@ -1,6 +1,9 @@
 package org.stellardev.galacticlib.util;
 
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -24,6 +27,16 @@ public class LibUtil {
         }
 
         return ret;
+    }
+
+    public boolean callEvent(Event event) {
+        Bukkit.getPluginManager().callEvent(event);
+
+        if(event instanceof Cancellable) {
+            return !((Cancellable) event).isCancelled();
+        } else {
+            return true;
+        }
     }
 
 }
