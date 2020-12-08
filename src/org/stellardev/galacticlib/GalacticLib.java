@@ -10,6 +10,8 @@ import org.stellardev.galacticlib.handler.fallback.FallbackDataHandler;
 import org.stellardev.galacticlib.handler.fallback.FallbackShopHandler;
 import org.stellardev.galacticlib.integration.luckperms.IntegrationLuckPerms;
 import org.stellardev.galacticlib.integration.silkspawners.IntegrationSilkSpawners;
+import org.stellardev.galacticlib.nms.NmsArmorStandPacket;
+import org.stellardev.galacticlib.nms.NmsPacket;
 import org.stellardev.galacticlib.nms.NmsSkullTexture;
 
 public class GalacticLib extends MassivePlugin {
@@ -37,6 +39,8 @@ public class GalacticLib extends MassivePlugin {
                 IntegrationLuckPerms.class,
                 IntegrationSilkSpawners.class,
 
+                NmsArmorStandPacket.class,
+                NmsPacket.class,
                 NmsSkullTexture.class
         );
     }

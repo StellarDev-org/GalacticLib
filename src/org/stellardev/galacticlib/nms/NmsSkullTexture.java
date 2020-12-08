@@ -16,7 +16,7 @@ public class NmsSkullTexture extends Mixin {
     // -------------------------------------------- //
 
     private static final NmsSkullTexture d = new NmsSkullTexture().setAlternatives(
-
+            NmsSkullTexture18R1P.class
     );
 
     // -------------------------------------------- //
