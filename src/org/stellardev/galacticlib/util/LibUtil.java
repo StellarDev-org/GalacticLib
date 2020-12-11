@@ -1,13 +1,12 @@
 package org.stellardev.galacticlib.util;
 
+import com.massivecraft.massivecore.util.Txt;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 @UtilityClass
 public class LibUtil {
@@ -37,6 +36,29 @@ public class LibUtil {
         } else {
             return true;
         }
+    }
+    public static String getTimeDescription(long millis) {
+        String ret = "";
+
+        List<String> unitCountParts = new ArrayList<>();
+        double millisLeft = (double) Math.abs(millis);
+
+        for (Map.Entry<String, Long> entry : Txt.unitMillis.entrySet())
+        {
+            if (unitCountParts.size() == 3 ) break;
+            String unitName = entry.getKey();
+            long unitSize = entry.getValue();
+            long unitCount = (long) Math.floor(millisLeft / unitSize);
+            if (unitCount < 1) continue;
+            millisLeft -= unitSize*unitCount;
+            unitCountParts.add(unitCount+" "+unitName);
+        }
+
+        if (unitCountParts.size() == 0) return "0 seconds";
+
+        ret += Txt.implodeCommaAnd(unitCountParts);
+
+        return ret;
     }
 
 }
