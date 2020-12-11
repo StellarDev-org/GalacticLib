@@ -14,6 +14,8 @@ public class Conf extends Entity<Conf> {
     public String msgEnabledDisplay = "&aenabled";
     public String msgDisabledDisplay = "&cdisabled";
 
+    public String msgInvalidTime = "&e&lGalacticLib &8» &cThe time format you have provided is invalid. Please use &f1&c, &f1s&c, &f1m&c or &f1h&c.";
+
     public String msgGuiNameNotSet = "&e&lGalacticLib &8» &cThe gui name is not setup for that gui.";
     public String msgGuiFormatNotSet = "&e&lGalacticLib &8» &cThe gui format is not setup for that gui.";
     public String msgGuiRowLengthNotSame = "&e&lGalacticLib &8» &cThe gui is not setup correctly. Row lengths do not match.";
