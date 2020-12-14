@@ -4,6 +4,7 @@ import com.massivecraft.massivecore.util.InventoryUtil;
 import com.massivecraft.massivecore.util.Txt;
 import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -210,7 +211,7 @@ public class TxtUtil {
     // SHUFFLE
     // -------------------------------------------- //
 
-    public static String shuffle(String input) {
+    public String shuffle(String input) {
         List<Character> characters = new ArrayList<>();
 
         for(char c : input.toCharArray()){
@@ -226,4 +227,17 @@ public class TxtUtil {
 
         return output.toString();
     }
+
+    // -------------------------------------------- //
+    // PRETTY LOCATIONS
+    // -------------------------------------------- //
+
+    public String getPrettyLocation(Location location) {
+        return getPrettyLocation(location, true);
+    }
+
+    public String getPrettyLocation(Location location, boolean includeWorld) {
+        return (includeWorld? location.getWorld().getName() + ", " : "") + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ();
+    }
+
 }
