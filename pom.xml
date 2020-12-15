@@ -129,6 +129,22 @@
             <version>2.10.9</version>
         </dependency>
         <dependency> <!-- PROVIDED -->
+            <groupId>com.boydti</groupId>
+            <artifactId>fawe-api</artifactId>
+            <version>19.11.13-5505943-1282-22.3.5</version>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-core</artifactId>
+            <version>6.1.4-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
             <version>6.1.4-SNAPSHOT</version>
@@ -159,6 +175,10 @@
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>fawe-repo</id>
+            <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+        </repository>
         <repository>
             <id>sk89q-repo</id>
             <url>>http://maven.sk89q.com/repo/</url>

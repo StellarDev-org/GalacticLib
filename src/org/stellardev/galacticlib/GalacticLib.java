@@ -8,8 +8,10 @@ import org.stellardev.galacticlib.handler.IDataHandler;
 import org.stellardev.galacticlib.handler.IShopHandler;
 import org.stellardev.galacticlib.handler.fallback.FallbackDataHandler;
 import org.stellardev.galacticlib.handler.fallback.FallbackShopHandler;
+import org.stellardev.galacticlib.integration.fastasyncworldedit.IntegrationFastAsyncWorldEdit;
 import org.stellardev.galacticlib.integration.luckperms.IntegrationLuckPerms;
 import org.stellardev.galacticlib.integration.silkspawners.IntegrationSilkSpawners;
+import org.stellardev.galacticlib.integration.worldedit.IntegrationWorldEdit;
 import org.stellardev.galacticlib.nms.NmsArmorStandPacket;
 import org.stellardev.galacticlib.nms.NmsPacket;
 import org.stellardev.galacticlib.nms.NmsSkullTexture;
@@ -36,8 +38,10 @@ public class GalacticLib extends MassivePlugin {
 
                 EngineGui.class,
 
+                IntegrationFastAsyncWorldEdit.class,
                 IntegrationLuckPerms.class,
                 IntegrationSilkSpawners.class,
+                IntegrationWorldEdit.class,
 
                 NmsArmorStandPacket.class,
                 NmsPacket.class,
