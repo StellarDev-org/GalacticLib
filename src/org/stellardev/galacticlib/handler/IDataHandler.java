@@ -11,4 +11,6 @@ public interface IDataHandler {
 
     boolean canAccess(Player player, Location location);
 
+    boolean isSameLand(Location location1, Location location2);
+
 }

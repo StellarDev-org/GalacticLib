@@ -35,6 +35,16 @@ public class EnginePlotSquared extends Engine implements IDataHandler {
         return plot.isAdded(player.getUniqueId());
     }
 
+    @Override
+    public boolean isSameLand(Location location1, Location location2) {
+        Plot plot1 = getPlotLocation(location1).getPlot();
+        Plot plot2 = getPlotLocation(location2).getPlot();
+
+        if(plot1 == null || plot2 == null) return false;
+
+        return plot1.getId().equals(plot2.getId());
+    }
+
     private com.intellectualcrafters.plot.object.Location getPlotLocation(Location location) {
         return BukkitUtil.getLocation(location);
     }
