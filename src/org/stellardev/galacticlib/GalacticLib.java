@@ -17,6 +17,8 @@ import org.stellardev.galacticlib.nms.NmsArmorStandPacket;
 import org.stellardev.galacticlib.nms.NmsPacket;
 import org.stellardev.galacticlib.nms.NmsSkullTexture;
 
+import java.util.logging.Level;
+
 public class GalacticLib extends MassivePlugin {
 
     private static GalacticLib i;
@@ -54,9 +56,10 @@ public class GalacticLib extends MassivePlugin {
     public IShopHandler getShopHandler() {
         return this.shopHandler == null? this.fallbackShopHandler : this.shopHandler;
     }
-    public void registerShopHandler(IShopHandler shopHandler) throws HandlerAlreadyRegisteredException {
+    public void registerShopHandler(IShopHandler shopHandler) {
         if(this.shopHandler != null) {
-            throw new HandlerAlreadyRegisteredException("shop");
+            GalacticLib.get().log(Level.SEVERE, "An issue occurred when registering the new shop handler '" + shopHandler.getClass().getSimpleName() + "', as a shop handler is already set.");
+            return;
         }
 
         GalacticLib.get().log("Shop handler has now been set to " + shopHandler.getClass().getSimpleName() + ".");
@@ -66,9 +69,10 @@ public class GalacticLib extends MassivePlugin {
     public IDataHandler getDataHandler() {
         return this.dataHandler == null? this.fallbackDataHandler : this.dataHandler;
     }
-    public void registerDataHandler(IDataHandler dataHandler) throws HandlerAlreadyRegisteredException {
+    public void registerDataHandler(IDataHandler dataHandler) {
         if(this.dataHandler != null) {
-            throw new HandlerAlreadyRegisteredException("data");
+            GalacticLib.get().log(Level.SEVERE, "An issue occurred when registering the new data handler '" + dataHandler.getClass().getSimpleName() + "', as a data handler is already set.");
+            return;
         }
 
         GalacticLib.get().log("Data handler has now been set to " + shopHandler.getClass().getSimpleName() + ".");

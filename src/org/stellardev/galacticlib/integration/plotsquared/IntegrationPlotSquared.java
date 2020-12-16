@@ -31,10 +31,6 @@ public class IntegrationPlotSquared extends Integration implements IDataHandlerP
     public void setIntegrationActiveInner(boolean active) {
         if(!active) return;
 
-        try {
-            GalacticLib.get().registerDataHandler(getDataHandler());
-        } catch (HandlerAlreadyRegisteredException ignore) {
-            GalacticLib.get().log("An issue occurred when registering the new data handler PlotSquared, as a data handler is already set.");
-        }
+        GalacticLib.get().registerDataHandler(getDataHandler());
     }
 }
