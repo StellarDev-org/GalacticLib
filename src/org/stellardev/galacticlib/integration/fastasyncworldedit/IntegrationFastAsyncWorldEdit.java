@@ -30,4 +30,13 @@ public class IntegrationFastAsyncWorldEdit extends Integration {
 
         return EngineFastAsyncWorldEdit.get().pasteBlocks(min, max, weightMap);
     }
+
+    public int pasteWalls(Location min, Location max, Map<Material, Double> weightMap) {
+        if(!isIntegrationActive()) {
+            GalacticLib.get().log("FastAsyncWorldEdit is not active, and therefore didn't paste blocks.");
+            return -1;
+        }
+
+        return EngineFastAsyncWorldEdit.get().pasteWalls(min, max, weightMap);
+    }
 }
