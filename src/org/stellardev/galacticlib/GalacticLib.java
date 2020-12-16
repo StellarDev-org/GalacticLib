@@ -10,6 +10,7 @@ import org.stellardev.galacticlib.handler.fallback.FallbackDataHandler;
 import org.stellardev.galacticlib.handler.fallback.FallbackShopHandler;
 import org.stellardev.galacticlib.integration.fastasyncworldedit.IntegrationFastAsyncWorldEdit;
 import org.stellardev.galacticlib.integration.luckperms.IntegrationLuckPerms;
+import org.stellardev.galacticlib.integration.plotsquared.IntegrationPlotSquared;
 import org.stellardev.galacticlib.integration.silkspawners.IntegrationSilkSpawners;
 import org.stellardev.galacticlib.integration.worldedit.IntegrationWorldEdit;
 import org.stellardev.galacticlib.nms.NmsArmorStandPacket;
@@ -40,6 +41,7 @@ public class GalacticLib extends MassivePlugin {
 
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationLuckPerms.class,
+                IntegrationPlotSquared.class,
                 IntegrationSilkSpawners.class,
                 IntegrationWorldEdit.class,
 

@@ -1,14 +1,14 @@
 package org.stellardev.galacticlib.handler;
 
 import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 public interface IDataHandler {
 
-    boolean isInValidWorld(World world);
+    boolean isInValidWorld(Location location);
 
     String getEntityHandler(Location location);
 
-    boolean isValid(Location location);
+    boolean canAccess(Player player, Location location);
 
 }
