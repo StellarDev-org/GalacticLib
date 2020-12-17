@@ -2,9 +2,7 @@ package org.stellardev.galacticlib.integration.plotsquared;
 
 import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivecore.Integration;
-import lombok.SneakyThrows;
 import org.stellardev.galacticlib.GalacticLib;
-import org.stellardev.galacticlib.exception.HandlerAlreadyRegisteredException;
 import org.stellardev.galacticlib.handler.IDataHandler;
 import org.stellardev.galacticlib.provider.IDataHandlerProvider;
 
