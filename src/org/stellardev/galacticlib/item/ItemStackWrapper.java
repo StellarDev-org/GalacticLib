@@ -10,6 +10,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.stellardev.galacticlib.util.SkullUtil;
 import org.stellardev.galacticlib.util.TxtUtil;
 
@@ -248,8 +249,13 @@ public class ItemStackWrapper {
         return clone;
     }
 
-    public ItemStackWrapper toWrapper(ItemStack itemStack) {
-        ItemStackWrapper itemStackWrapper = new ItemStackWrapper(itemStack.getType(), itemStack.getAmount(), itemStack.getDurability());
+    public static ItemStackWrapper toWrapper(ItemStack itemStack) {
+        ItemStackWrapper.ItemStackWrapperBuilder itemStackWrapperBuilder = ItemStackWrapper.builder();
+
+        itemStackWrapperBuilder
+                .amount(itemStack.getAmount())
+                .damage(itemStack.getDurability())
+                .material(itemStack.getType());
 
         if(itemStack.hasItemMeta()) {
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -263,10 +269,23 @@ public class ItemStackWrapper {
             if(!itemMeta.getItemFlags().isEmpty()) metaWrapper.setItemFlags(itemMeta.getItemFlags());
             if(itemMeta.spigot().isUnbreakable()) metaWrapper.setUnbreakable(true);
 
-            itemStackWrapper.meta = metaWrapper;
+            if(itemMeta instanceof SkullMeta) {
+                SkullWrapper skullWrapper = new SkullWrapper();
+                SkullMeta skullMeta = (SkullMeta) itemMeta;
+
+                if(skullMeta.hasOwner()) {
+                    skullWrapper.setOwner(skullMeta.getOwner());
+                } else {
+                    skullWrapper.setTexture(SkullUtil.getSkullTexture(itemStack));
+                }
+
+                itemStackWrapperBuilder.skull(skullWrapper);
+            }
+
+            itemStackWrapperBuilder.meta(metaWrapper);
         }
 
-        return itemStackWrapper;
+        return itemStackWrapperBuilder.build();
     }
 
 }

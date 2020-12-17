@@ -8,6 +8,10 @@ import org.stellardev.galacticlib.handler.IDataHandler;
 
 public class DataHandlerColl<T extends Entity<T>> extends Coll<T> {
 
+    public DataHandlerColl(String id) {
+        super(id);
+    }
+
     public T getByLocation(Location location) {
         IDataHandler dataHandler = GalacticLib.get().getDataHandler();
 
