@@ -3,7 +3,6 @@ package org.stellardev.galacticlib;
 import com.massivecraft.massivecore.MassivePlugin;
 import org.stellardev.galacticlib.coll.ConfColl;
 import org.stellardev.galacticlib.engine.EngineGui;
-import org.stellardev.galacticlib.exception.HandlerAlreadyRegisteredException;
 import org.stellardev.galacticlib.handler.IDataHandler;
 import org.stellardev.galacticlib.handler.IShopHandler;
 import org.stellardev.galacticlib.handler.fallback.FallbackDataHandler;
@@ -75,7 +74,7 @@ public class GalacticLib extends MassivePlugin {
             return;
         }
 
-        GalacticLib.get().log("Data handler has now been set to " + shopHandler.getClass().getSimpleName() + ".");
+        GalacticLib.get().log("Data handler has now been set to " + dataHandler.getClass().getSimpleName() + ".");
         this.dataHandler = dataHandler;
     }
 }

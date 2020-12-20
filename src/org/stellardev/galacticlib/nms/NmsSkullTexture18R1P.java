@@ -3,11 +3,10 @@ package org.stellardev.galacticlib.nms;
 import com.google.common.collect.Iterables;
 import com.massivecraft.massivecore.Couple;
 import com.massivecraft.massivecore.collections.MassiveList;
-import com.massivecraft.massivecore.nms.NmsSkullMeta;
-import com.massivecraft.massivecore.nms.NmsSkullMetaAbstract;
 import com.massivecraft.massivecore.particleeffect.ReflectionUtils;
 import com.massivecraft.massivecore.util.ReflectionUtil;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.stellardev.galacticlib.GalacticLib;
 import org.stellardev.galacticlib.item.ContainerGameProfileProperty;
 
 import java.lang.reflect.Constructor;
@@ -21,6 +20,12 @@ import java.util.stream.Collectors;
 
 public class NmsSkullTexture18R1P extends NmsSkullTexture {
 
+    // -------------------------------------------- //
+    // INSTANCE & CONSTRUCT
+    // -------------------------------------------- //
+
+    private static final NmsSkullTexture18R1P i = new NmsSkullTexture18R1P();
+    public static NmsSkullTexture18R1P get() { return i; }
     // -------------------------------------------- //
     // FIELDS
     // -------------------------------------------- //

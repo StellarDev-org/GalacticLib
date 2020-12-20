@@ -161,35 +161,35 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
         this.classDataWatcher = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("DataWatcher");
 
         this.classEntityArmorStand = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("EntityArmorStand");
-        this.methodEntityArmorStandSetLocation = ReflectionUtil.getMethod(this.classEntityArmorStand, "setLoction", double.class, double.class, double.class, float.class, float.class);
+        this.methodEntityArmorStandSetLocation = ReflectionUtil.getMethod(this.classEntity, "setLocation", double.class, double.class, double.class, float.class, float.class);
         this.methodEntityArmorStandGetEquipment = ReflectionUtil.getMethod(this.classEntityArmorStand, "getEquipment", int.class);
         this.methodEntityArmorStandSetEquipment = ReflectionUtil.getMethod(this.classEntityArmorStand, "setEquipment", int.class, this.classItemStack);
-        this.methodEntityArmorStandGetId = ReflectionUtil.getMethod(this.classEntityArmorStand, "getId");
+        this.methodEntityArmorStandGetId = ReflectionUtil.getMethod(this.classEntity, "getId");
         this.methodEntityArmorStandHasBasePlate = ReflectionUtil.getMethod(this.classEntityArmorStand, "hasBasePlate");
         this.methodEntityArmorStandSetBasePlate = ReflectionUtil.getMethod(this.classEntityArmorStand, "setBasePlate", boolean.class);
         this.methodEntityArmorStandHasGravity = ReflectionUtil.getMethod(this.classEntityArmorStand, "hasGravity");
         this.methodEntityArmorStandSetGravity = ReflectionUtil.getMethod(this.classEntityArmorStand, "setGravity", boolean.class);
-        this.methodEntityArmorStandIsInvisible = ReflectionUtil.getMethod(this.classEntityArmorStand, "isInvisible");
-        this.methodEntityArmorStandSetInvisible = ReflectionUtil.getMethod(this.classEntityArmorStand, "setInvisible", boolean.class);
+        this.methodEntityArmorStandIsInvisible = ReflectionUtil.getMethod(this.classEntity, "isInvisible");
+        this.methodEntityArmorStandSetInvisible = ReflectionUtil.getMethod(this.classEntity, "setInvisible", boolean.class);
         this.methodEntityArmorStandHasArms = ReflectionUtil.getMethod(this.classEntityArmorStand, "hasArms");
         this.methodEntityArmorStandSetArms = ReflectionUtil.getMethod(this.classEntityArmorStand, "setArms", boolean.class);
         this.methodEntityArmorStandIsSmall = ReflectionUtil.getMethod(this.classEntityArmorStand, "isSmall");
         this.methodEntityArmorStandSetSmall = ReflectionUtil.getMethod(this.classEntityArmorStand, "setSmall", boolean.class);
-        this.methodEntityArmorStandGetWorld = ReflectionUtil.getMethod(this.classEntityArmorStand, "getWorld");
-        this.fieldEntityArmorStandLocX = ReflectionUtil.getField(this.classEntityArmorStand, "locX");
-        this.fieldEntityArmorStandLocY = ReflectionUtil.getField(this.classEntityArmorStand, "locY");
-        this.fieldEntityArmorStandLocZ = ReflectionUtil.getField(this.classEntityArmorStand, "locZ");
-        this.fieldEntityArmorStandYaw = ReflectionUtil.getField(this.classEntityArmorStand, "yaw");
-        this.fieldEntityArmorStandPitch = ReflectionUtil.getField(this.classEntityArmorStand, "pitch");
-        this.methodEntityArmorStandDie = ReflectionUtil.getMethod(this.classEntityArmorStand, "die");
-        this.methodEntityArmorStandIsAlive = ReflectionUtil.getMethod(this.classEntityArmorStand, "isAlive");
-        this.methodEntityArmorStandGetUniqueId = ReflectionUtil.getMethod(this.classEntityArmorStand, "getUniqueID");
-        this.methodEntityArmorStandGetCustomName = ReflectionUtil.getMethod(this.classEntityArmorStand, "getCustomName");
-        this.methodEntityArmorStandSetCustomName = ReflectionUtil.getMethod(this.classEntityArmorStand, "setCustomName", String.class);
-        this.methodEntityArmorStandGetCustomNameVisible = ReflectionUtil.getMethod(this.classEntityArmorStand, "getCustomNameVisible");
-        this.methodEntityArmorStandSetCustomNameVisible = ReflectionUtil.getMethod(this.classEntityArmorStand, "setCustomNameVisible", boolean.class);
-        this.methodEntityArmorStandGetDataWatcher = ReflectionUtil.getMethod(this.classEntityArmorStand, "getDataWatcher");
-        this.constructorEntityArmorStand = ReflectionUtil.getConstructor(this.classEntityArmorStand, this.classWorldServer);
+        this.methodEntityArmorStandGetWorld = ReflectionUtil.getMethod(this.classEntity, "getWorld");
+        this.fieldEntityArmorStandLocX = ReflectionUtil.getField(this.classEntity, "locX");
+        this.fieldEntityArmorStandLocY = ReflectionUtil.getField(this.classEntity, "locY");
+        this.fieldEntityArmorStandLocZ = ReflectionUtil.getField(this.classEntity, "locZ");
+        this.fieldEntityArmorStandYaw = ReflectionUtil.getField(this.classEntity, "yaw");
+        this.fieldEntityArmorStandPitch = ReflectionUtil.getField(this.classEntity, "pitch");
+        this.methodEntityArmorStandDie = ReflectionUtil.getMethod(this.classEntity, "die");
+        this.methodEntityArmorStandIsAlive = ReflectionUtil.getMethod(this.classEntityLiving, "isAlive");
+        this.methodEntityArmorStandGetUniqueId = ReflectionUtil.getMethod(this.classEntity, "getUniqueID");
+        this.methodEntityArmorStandGetCustomName = ReflectionUtil.getMethod(this.classEntity, "getCustomName");
+        this.methodEntityArmorStandSetCustomName = ReflectionUtil.getMethod(this.classEntity, "setCustomName", String.class);
+        this.methodEntityArmorStandGetCustomNameVisible = ReflectionUtil.getMethod(this.classEntity, "getCustomNameVisible");
+        this.methodEntityArmorStandSetCustomNameVisible = ReflectionUtil.getMethod(this.classEntity, "setCustomNameVisible", boolean.class);
+        this.methodEntityArmorStandGetDataWatcher = ReflectionUtil.getMethod(this.classEntity, "getDataWatcher");
+        this.constructorEntityArmorStand = ReflectionUtil.getConstructor(this.classEntityArmorStand, this.classWorld);
 
         this.classPacketPlayOutSpawnEntityLiving = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("PacketPlayOutSpawnEntityLiving");
         this.constructorPacketPlayOutSpawnEntityLiving = ReflectionUtil.getConstructor(this.classPacketPlayOutSpawnEntityLiving, this.classEntityLiving);
@@ -203,10 +203,10 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
         this.constructorPacketPlayOutEntityEquipment = ReflectionUtil.getConstructor(this.classPacketPlayOutEntityEquipment, int.class, int.class, this.classItemStack);
 
         this.classPacketPlayOutEntityTeleport = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("PacketPlayOutEntityTeleport");
-        this.constructorPacketPlayOutEntityTeleport = ReflectionUtil.getConstructor(this.classPacketPlayOutSpawnEntityLiving, this.classEntity);
+        this.constructorPacketPlayOutEntityTeleport = ReflectionUtil.getConstructor(this.classPacketPlayOutEntityTeleport, this.classEntity);
 
         this.classPacketPlayOutEntityDestroy = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("PacketPlayOutEntityDestroy");
-        this.constructorPacketPlayOutEntityDestroy = ReflectionUtil.getConstructor(this.classPacketPlayOutEntityDestroy, int.class);
+        this.constructorPacketPlayOutEntityDestroy = ReflectionUtil.getConstructor(this.classPacketPlayOutEntityDestroy, int[].class);
 
         this.classPacketPlayOutEntityMetadata = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("PacketPlayOutEntityMetadata");
         this.constructorPacketPlayOutEntityMetadata = ReflectionUtil.getConstructor(this.classPacketPlayOutEntityMetadata, int.class, this.classDataWatcher, boolean.class);
