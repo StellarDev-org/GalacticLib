@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unchecked")
 public class NmsSkullTexture18R1P extends NmsSkullTexture {
 
     // -------------------------------------------- //
@@ -171,16 +172,15 @@ public class NmsSkullTexture18R1P extends NmsSkullTexture {
 
         if(propertyMap == null) return null;
 
-        Collection<Map.Entry<String, ContainerGameProfileProperty>> properties = getGameProfileProperties(propertyMap);
-        Object property = Iterables.getFirst(properties.stream().filter(entry -> entry.getKey().equalsIgnoreCase("textures")).collect(Collectors.toList()), (Object) null);
+        Object property = Iterables.getFirst(getGameProfileProperties(propertyMap).stream().filter(entry -> entry.getKey().equalsIgnoreCase("textures")).collect(Collectors.toList()), null);
 
         if(property == null) return null;
+        if(!(property instanceof Couple<?, ?>)) return null;
 
-        Object value = ReflectionUtil.getField(this.fieldPropertyValue, property);
+        Couple<String, ContainerGameProfileProperty> couple = (Couple<String, ContainerGameProfileProperty>) property;
+        ContainerGameProfileProperty container = couple.getSecond();
 
-        if(!(value instanceof String)) return null;
-
-        return (String) value;
+        return container.value;
     }
 
     // -------------------------------------------- //
