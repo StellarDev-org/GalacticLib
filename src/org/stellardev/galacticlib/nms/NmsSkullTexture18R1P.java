@@ -6,7 +6,6 @@ import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.particleeffect.ReflectionUtils;
 import com.massivecraft.massivecore.util.ReflectionUtil;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.stellardev.galacticlib.GalacticLib;
 import org.stellardev.galacticlib.item.ContainerGameProfileProperty;
 
 import java.lang.reflect.Constructor;
@@ -204,8 +203,8 @@ public class NmsSkullTexture18R1P extends NmsSkullTexture {
         if(propertyMap == null) return;
 
         ContainerGameProfileProperty containerGameProfileProperty = new ContainerGameProfileProperty();
-        containerGameProfileProperty.name = texture;
-        containerGameProfileProperty.value = "textures";
+        containerGameProfileProperty.name = "texture";
+        containerGameProfileProperty.value = texture;
 
         Object newPropertyObject = containerToProperty(containerGameProfileProperty);
         putPropertyInMap(propertyMap, "textures", newPropertyObject);
