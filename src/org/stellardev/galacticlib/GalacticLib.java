@@ -13,6 +13,7 @@ import org.stellardev.galacticlib.integration.plotsquared.IntegrationPlotSquared
 import org.stellardev.galacticlib.integration.silkspawners.IntegrationSilkSpawners;
 import org.stellardev.galacticlib.integration.worldedit.IntegrationWorldEdit;
 import org.stellardev.galacticlib.nms.NmsArmorStandPacket;
+import org.stellardev.galacticlib.nms.NmsChestPacket;
 import org.stellardev.galacticlib.nms.NmsPacket;
 import org.stellardev.galacticlib.nms.NmsSkullTexture;
 
@@ -47,6 +48,7 @@ public class GalacticLib extends MassivePlugin {
                 IntegrationWorldEdit.class,
 
                 NmsArmorStandPacket.class,
+                NmsChestPacket.class,
                 NmsPacket.class,
                 NmsSkullTexture.class
         );
