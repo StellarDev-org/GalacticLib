@@ -1,21 +1,16 @@
 package org.stellardev.galacticlib;
 
 import com.massivecraft.massivecore.MassivePlugin;
-import org.stellardev.galacticlib.coll.ConfColl;
-import org.stellardev.galacticlib.engine.EngineGui;
-import org.stellardev.galacticlib.handler.IDataHandler;
-import org.stellardev.galacticlib.handler.IShopHandler;
-import org.stellardev.galacticlib.handler.fallback.FallbackDataHandler;
-import org.stellardev.galacticlib.handler.fallback.FallbackShopHandler;
-import org.stellardev.galacticlib.integration.fastasyncworldedit.IntegrationFastAsyncWorldEdit;
-import org.stellardev.galacticlib.integration.luckperms.IntegrationLuckPerms;
-import org.stellardev.galacticlib.integration.plotsquared.IntegrationPlotSquared;
-import org.stellardev.galacticlib.integration.silkspawners.IntegrationSilkSpawners;
-import org.stellardev.galacticlib.integration.worldedit.IntegrationWorldEdit;
-import org.stellardev.galacticlib.nms.NmsArmorStandPacket;
-import org.stellardev.galacticlib.nms.NmsChestPacket;
-import org.stellardev.galacticlib.nms.NmsPacket;
-import org.stellardev.galacticlib.nms.NmsSkullTexture;
+import org.stellardev.galacticlib.coll.*;
+import org.stellardev.galacticlib.engine.*;
+import org.stellardev.galacticlib.handler.*;
+import org.stellardev.galacticlib.handler.fallback.*;
+import org.stellardev.galacticlib.integration.fastasyncworldedit.*;
+import org.stellardev.galacticlib.integration.luckperms.*;
+import org.stellardev.galacticlib.integration.plotsquared.*;
+import org.stellardev.galacticlib.integration.silkspawners.*;
+import org.stellardev.galacticlib.integration.worldedit.*;
+import org.stellardev.galacticlib.nms.*;
 
 import java.util.logging.Level;
 
@@ -50,6 +45,7 @@ public class GalacticLib extends MassivePlugin {
                 NmsArmorStandPacket.class,
                 NmsChestPacket.class,
                 NmsPacket.class,
+                NmsPing.class,
                 NmsSkullTexture.class
         );
     }
