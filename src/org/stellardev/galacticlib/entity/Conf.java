@@ -16,6 +16,8 @@ public class Conf extends Entity<Conf> {
 
     public String msgInvalidTime = "&e&lGalacticLib &8» &cThe time format you have provided is invalid. Please use &f1&c, &f1s&c, &f1m&c or &f1h&c.";
 
+    public String msgInvalidMaterial = "&e&lGalacticLib &8» &cThe inputted material is invalid. Please try something like &fDirt&c, &f3&c, &f3:0&c, or &fDirt:0&c.";
+
     public String msgGuiNameNotSet = "&e&lGalacticLib &8» &cThe gui name is not setup for that gui.";
     public String msgGuiFormatNotSet = "&e&lGalacticLib &8» &cThe gui format is not setup for that gui.";
     public String msgGuiRowLengthNotSame = "&e&lGalacticLib &8» &cThe gui is not setup correctly. Row lengths do not match.";
