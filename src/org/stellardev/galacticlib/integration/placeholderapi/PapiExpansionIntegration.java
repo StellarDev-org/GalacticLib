@@ -2,6 +2,7 @@ package org.stellardev.galacticlib.integration.placeholderapi;
 
 import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivecore.Integration;
+import org.bukkit.entity.Player;
 
 public abstract class PapiExpansionIntegration extends Integration {
 
@@ -23,5 +24,9 @@ public abstract class PapiExpansionIntegration extends Integration {
         } else {
             getEngineInstance().unregister();
         }
+    }
+
+    public String setPlaceholders(Player player, String input) {
+        return getEngineInstance().setPlaceholders(player, input);
     }
 }
