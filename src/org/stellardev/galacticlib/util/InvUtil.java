@@ -1,6 +1,5 @@
 package org.stellardev.galacticlib.util;
 
-import com.massivecraft.massivecore.MassiveCoreMConf;
 import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.util.InventoryUtil;
 import lombok.experimental.UtilityClass;
@@ -10,8 +9,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.stellardev.galacticlib.entity.Conf;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 @UtilityClass
 public class InvUtil {
+
+    private Set<Material> TRANSPARENT_MATERIALS;
 
     public int getFreeSlots(Inventory inventory) {
         inventory = InventoryUtil.clone(inventory, false);
@@ -46,5 +52,22 @@ public class InvUtil {
         } else {
             player.setItemInHand(new ItemStack(Material.AIR));
         }
+    }
+
+    public Set<Material> getTransparentMaterial() {
+        if(TRANSPARENT_MATERIALS != null) {
+            return TRANSPARENT_MATERIALS;
+        }
+
+        TRANSPARENT_MATERIALS = new HashSet<>();
+
+        Arrays.stream(Material.values())
+                .filter(Objects::nonNull)
+                .filter(Material::isTransparent)
+                .forEach(TRANSPARENT_MATERIALS::add);
+
+        TRANSPARENT_MATERIALS.add(Material.WATER);
+
+        return TRANSPARENT_MATERIALS;
     }
 }
