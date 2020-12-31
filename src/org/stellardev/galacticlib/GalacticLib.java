@@ -46,7 +46,8 @@ public class GalacticLib extends MassivePlugin {
                 NmsChestPacket.class,
                 NmsPacket.class,
                 NmsPing.class,
-                NmsSkullTexture.class
+                NmsSkullTexture.class,
+                NmsTps.class
         );
     }
 
