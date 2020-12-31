@@ -130,8 +130,9 @@ If you'd like to use GalacticLib, below is some example pom.xml formats to use w
     <packaging>jar</packaging>
 
     <properties>
-        <plugin.package>org.stellardev.plugin-name-here</plugin.package>
-        <plugin.path>org/stellardev/plugin-name-here/</plugin.path>
+        <plugin.name>galacticessentials</plugin.name>
+        <plugin.package>org.stellardev.${plugin.name}</plugin.package>
+        <plugin.path>org/stellardev/${plugin.name}/</plugin.path>
     </properties>
 
     <profiles>
