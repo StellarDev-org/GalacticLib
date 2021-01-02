@@ -12,7 +12,33 @@ public class DataHandlerColl<T extends Entity<T>> extends Coll<T> {
         super(id);
     }
 
+    public T getByObject(Object object) {
+        return getByObject(object, true);
+    }
+
+    public T getByObject(Object object, boolean creative) {
+        IDataHandler dataHandler = GalacticLib.get().getDataHandler();
+
+        if(dataHandler == null) return null;
+
+        String id = null;
+
+        if(object instanceof Location) {
+            return getByLocation((Location) object, creative);
+        } else if(object instanceof String) {
+            id = (String) object;
+        }
+
+        if(id == null) return null;
+
+        return get(id, creative);
+    }
+
     public T getByLocation(Location location) {
+        return getByLocation(location, true);
+    }
+
+    public T getByLocation(Location location, boolean creative) {
         IDataHandler dataHandler = GalacticLib.get().getDataHandler();
 
         if(dataHandler == null) return null;
@@ -22,7 +48,7 @@ public class DataHandlerColl<T extends Entity<T>> extends Coll<T> {
 
         if(id == null) return null;
 
-        return get(id, true);
+        return get(id, creative);
     }
 
 }
