@@ -25,3 +25,12 @@ hs_err_pid*
 # IntelliJ
 *.iml
 /.idea/
+
+#VSC
+*.project
+*.classpath
+/.settings/
+
+#output file
+/target/
+*.factorypath
