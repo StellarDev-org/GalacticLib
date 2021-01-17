@@ -11,6 +11,7 @@ import java.util.*;
 public class MetaWrapper {
 
     @Getter @Setter private Map<String, Integer> enchants;
+    @Getter @Setter private Map<String, Object> nbtMap;
     @Getter @Setter private Set<ItemFlag> itemFlags;
     @Getter @Setter private String displayName;
     @Getter @Setter private List<String> lore;
@@ -26,6 +27,12 @@ public class MetaWrapper {
         if(this.itemFlags == null) this.itemFlags = new HashSet<>();
 
         this.itemFlags.addAll(Arrays.asList(itemFlags));
+    }
+
+    public void addNbt(String map, Object object) {
+        if(this.nbtMap == null) this.nbtMap = new HashMap<>();
+
+        this.nbtMap.put(map, object);
     }
 
     public boolean isUnbreakable() {

@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.stellardev.galacticlib.util.NbtUtil;
 import org.stellardev.galacticlib.util.SkullUtil;
 import org.stellardev.galacticlib.util.TxtUtil;
 
@@ -107,6 +108,7 @@ public class ItemStackWrapper {
             if(this.meta.getLore() != null) stringBuilder.append("lore=").append(this.meta.getLore().toString()).append(" ");
             if(this.meta.getEnchants() != null) stringBuilder.append("enchants=").append(this.meta.getEnchants().toString()).append(" ");
             if(this.meta.getItemFlags() != null) stringBuilder.append("itemFlags=").append(this.meta.getItemFlags().toString()).append(" ");
+            if(this.meta.getNbtMap() != null) stringBuilder.append("nbtMap=").append(this.meta.getNbtMap().toString()).append(" ");
         }
         if(this.skull != null) {
             if(this.skull.getOwner() != null) stringBuilder.append("skullOwner=").append(this.skull.getOwner()).append(" ");
@@ -155,7 +157,7 @@ public class ItemStackWrapper {
         return this.meta != null && this.meta.getLore() != null && !this.meta.getLore().isEmpty();
     }
 
-    public void applyMeta(ItemStack itemStack, String... replacements) {
+    public ItemStack applyMeta(ItemStack itemStack, String... replacements) {
         if(this.meta != null) {
             MetaWrapper metaWrapper = this.meta;
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -163,6 +165,7 @@ public class ItemStackWrapper {
             List<String> lore = metaWrapper.getLore();
             Map<String, Integer> enchants = metaWrapper.getEnchants();
             Set<ItemFlag> itemFlags = metaWrapper.getItemFlags();
+            Map<String, Object> nbt = metaWrapper.getNbtMap();
 
             if(displayName != null) itemMeta.setDisplayName(TxtUtil.parseAndReplace(displayName, replacements));
             if(lore != null) itemMeta.setLore(TxtUtil.parseAndReplace(lore, replacements));
@@ -180,7 +183,13 @@ public class ItemStackWrapper {
             }
 
             itemStack.setItemMeta(itemMeta);
+
+            if(nbt != null) {
+                itemStack = NbtUtil.setKeys(itemStack, nbt);
+            }
         }
+
+        return itemStack;
     }
 
     public ItemStack toItemStack(List<String> replacements) {
@@ -219,6 +228,7 @@ public class ItemStackWrapper {
             Map<String, Integer> enchants = metaWrapper.getEnchants();
             Set<ItemFlag> itemFlags = metaWrapper.getItemFlags();
             boolean unbreakable = metaWrapper.isUnbreakable();
+            Map<String, Object> nbt = metaWrapper.getNbtMap();
 
             if(itemMeta == null) {
                 throw new NullPointerException("itemMeta is null!");
@@ -244,6 +254,11 @@ public class ItemStackWrapper {
             itemMeta.spigot().setUnbreakable(unbreakable);
 
             clone.setItemMeta(itemMeta);
+
+
+            if(nbt != null) {
+                clone = NbtUtil.setKeys(clone, nbt);
+            }
         }
 
         return clone;

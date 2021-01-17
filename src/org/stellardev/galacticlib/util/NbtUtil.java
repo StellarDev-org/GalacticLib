@@ -1,16 +1,24 @@
 package org.stellardev.galacticlib.util;
 
 import com.massivecraft.massivecore.util.InventoryUtil;
-import de.tr7zw.nbtapi.NBTItem;
+import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @UtilityClass
 public class NbtUtil {
+
+    public ItemStack setKeys(ItemStack itemStack, Map<String, Object> nbt) {
+        if(InventoryUtil.isNothing(itemStack)) return itemStack;
+
+        NBTItem nbtItem = new NBTItem(itemStack);
+
+        nbt.forEach(nbtItem::setObject);
+
+        return nbtItem.getItem();
+    }
 
     public ItemStack setKey(ItemStack itemStack, String key, String value) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;

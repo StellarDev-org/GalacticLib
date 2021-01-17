@@ -53,7 +53,7 @@
                     </filters>
                     <relocations>
                         <relocation>
-                            <pattern>de.tr7zw</pattern>
+                            <pattern>de.tr7zw.changeme</pattern>
                             <shadedPattern>org.stellardev.galacticlib.xlib</shadedPattern>
                         </relocation>
                     </relocations>
@@ -95,9 +95,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
-            <groupId>de.tr7zw.nbtapi</groupId>
-            <artifactId>NBTAPI</artifactId>
-            <version>2.5.0</version>
+            <groupId>de.tr7zw</groupId>
+            <artifactId>item-nbt-api</artifactId>
+            <version>2.7.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
@@ -194,6 +194,11 @@
 
     <repositories>
         <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
             <id>fawe-repo</id>
             <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
         </repository>
@@ -208,10 +213,6 @@
         <repository>
             <id>placeholderapi-repo</id>
             <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-        </repository>
-        <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
     </repositories>
 </project>
