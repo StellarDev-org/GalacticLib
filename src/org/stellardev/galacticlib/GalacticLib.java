@@ -12,6 +12,7 @@ import org.stellardev.galacticlib.integration.luckperms.*;
 import org.stellardev.galacticlib.integration.plotsquared.*;
 import org.stellardev.galacticlib.integration.silkspawners.*;
 import org.stellardev.galacticlib.integration.worldedit.*;
+import org.stellardev.galacticlib.mixin.MixinTeleport;
 import org.stellardev.galacticlib.nms.*;
 import org.stellardev.galacticlib.provider.IDataHandlerProvider;
 import org.stellardev.galacticlib.provider.IShopHandlerProvider;
@@ -50,6 +51,8 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 IntegrationPlotSquared.class,
                 IntegrationSilkSpawners.class,
                 IntegrationWorldEdit.class,
+
+                MixinTeleport.class,
 
                 NmsArmorStandPacket.class,
                 NmsChestPacket.class,

@@ -27,6 +27,11 @@ public class Conf extends Entity<Conf> {
     public String msgGuiInventoryNotSet = "&e&lGalacticLib &8» &cThe inventory has not been initialized! Please show a developer this.";
     public String msgGuiLeaveWindowToEdit = "&e&lGalacticLib &8» &cYou cannot do that while you're within a gui window.";
 
+    public String msgTeleportingDelayObject = "&e&lGalacticLib &8» &aTeleporting to &f%s&a in &f%ss&a unless you move.";
+    public String msgTeleportingDelayNoObject = "&e&lGalacticLib &8» &aTeleporting in &f%ss&a unless you move.";
+    public String msgTeleportingNow = "&e&lGalacticLib &8» &aTeleported to &f%s&a.";
+
+
     public String failedGuiDisplay = "&c&lERROR 404";
 
     public long guiClickThrottleDelayMs = 200L;
