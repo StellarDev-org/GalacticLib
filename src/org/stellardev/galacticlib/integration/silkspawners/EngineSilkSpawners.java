@@ -6,16 +6,17 @@ import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.stellardev.galacticlib.handler.ISpawnerHandler;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EngineSilkSpawners extends Engine {
+public class EngineSilkSpawners extends Engine implements ISpawnerHandler {
 
-    private static final EngineSilkSpawners instance = new EngineSilkSpawners();
-    public static EngineSilkSpawners get() { return instance; }
+    private static final EngineSilkSpawners i = new EngineSilkSpawners();
+    public static EngineSilkSpawners get() { return i; }
 
     private final Map<String, EntityType> entityMap = new HashMap<>();
     private SilkUtil silkUtil;
@@ -33,11 +34,8 @@ public class EngineSilkSpawners extends Engine {
         }
     }
 
-    public SilkUtil getSilkUtil() {
-        return this.silkUtil == null? (this.silkUtil = SilkUtil.hookIntoSilkSpanwers()) : this.silkUtil;
-    }
-
-    public EntityType getEntityTypeFromItemStack(ItemStack itemStack) {
+    @Override
+    public EntityType getEntityTypeFromItem(ItemStack itemStack) {
         try {
             BlockStateMeta blockStateMeta = ((BlockStateMeta) itemStack.getItemMeta());
             CreatureSpawner creatureSpawner = (CreatureSpawner) blockStateMeta.getBlockState();
@@ -74,10 +72,15 @@ public class EngineSilkSpawners extends Engine {
         }
     }
 
+    @Override
     public ItemStack getSpawnerItem(int amount, EntityType entityType) {
         String entityName = entityType.name().toLowerCase();
 
         return getSilkUtil().newSpawnerItem(entityName, getSilkUtil().getCustomSpawnerName(entityName), amount, false);
+    }
+
+    private SilkUtil getSilkUtil() {
+        return this.silkUtil == null? (this.silkUtil = SilkUtil.hookIntoSilkSpanwers()) : this.silkUtil;
     }
 
     public enum SpawnerIdToEntityType {

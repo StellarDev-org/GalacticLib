@@ -8,11 +8,14 @@ import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.stellardev.galacticlib.GalacticLib;
+import org.stellardev.galacticlib.handler.ISpawnerHandler;
+import org.stellardev.galacticlib.provider.ISpawnerHandlerProvider;
 
-public class IntegrationSilkSpawners extends Integration {
+public class IntegrationSilkSpawners extends Integration implements ISpawnerHandlerProvider {
 
-    private static final IntegrationSilkSpawners instance = new IntegrationSilkSpawners();
-    public static IntegrationSilkSpawners get() { return instance; }
+    private static final IntegrationSilkSpawners i = new IntegrationSilkSpawners();
+    public static IntegrationSilkSpawners get() { return i; }
 
     private IntegrationSilkSpawners() {
         this.setPluginName("SilkSpawners");
@@ -23,31 +26,15 @@ public class IntegrationSilkSpawners extends Integration {
         return EngineSilkSpawners.get();
     }
 
-    public EntityType getEntityTypeFromItemStack(ItemStack itemStack) {
-        if(!isIntegrationActive()) {
-            BlockStateMeta blockStateMeta = (BlockStateMeta) itemStack.getItemMeta();
-            CreatureSpawner creatureSpawner = (CreatureSpawner) blockStateMeta.getBlockState();
-
-            return creatureSpawner.getSpawnedType();
-        }
-
-        return EngineSilkSpawners.get().getEntityTypeFromItemStack(itemStack);
+    @Override
+    public ISpawnerHandler getSpawnerHandler() {
+        return EngineSilkSpawners.get();
     }
 
-    public ItemStack getSpawnerItem(int amount, EntityType entityType) {
-        if(!isIntegrationActive()) {
-            ItemStack itemStack = new ItemStack(Material.MOB_SPAWNER, amount);
-            BlockStateMeta blockStateMeta = (BlockStateMeta) itemStack.getItemMeta();
-            BlockState blockState = blockStateMeta.getBlockState();
+    @Override
+    public void setIntegrationActiveInner(boolean active) {
+        if(!active) return;
 
-            ((CreatureSpawner) blockState).setSpawnedType(entityType);
-
-            blockStateMeta.setBlockState(blockState);
-            itemStack.setItemMeta(blockStateMeta);
-
-            return itemStack;
-        }
-
-        return EngineSilkSpawners.get().getSpawnerItem(amount, entityType);
+        GalacticLib.get().registerSpawnerHandler(getSpawnerHandler());
     }
 }

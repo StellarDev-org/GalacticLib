@@ -16,11 +16,12 @@ import org.stellardev.galacticlib.mixin.MixinTeleport;
 import org.stellardev.galacticlib.nms.*;
 import org.stellardev.galacticlib.provider.IDataHandlerProvider;
 import org.stellardev.galacticlib.provider.IShopHandlerProvider;
+import org.stellardev.galacticlib.provider.ISpawnerHandlerProvider;
 import org.stellardev.galacticlib.provider.ITokenHandlerProvider;
 
 import java.util.logging.Level;
 
-public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, IShopHandlerProvider, ITokenHandlerProvider {
+public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, IShopHandlerProvider, ITokenHandlerProvider, ISpawnerHandlerProvider {
 
     private static GalacticLib i;
     public static GalacticLib get() { return i; }
@@ -29,10 +30,12 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
         i = this;
     }
 
+    private final ISpawnerHandler fallbackSpawnerHandler = new FallbackSpawnerHandler();
     private final ITokenHandler fallbackTokenHandler = new FallbackTokenHandler();
     private final IDataHandler fallbackDataHandler = new FallbackDataHandler();
     private final IShopHandler fallbackShopHandler = new FallbackShopHandler();
 
+    private ISpawnerHandler spawnerHandler;
     private ITokenHandler tokenHandler;
     private IDataHandler dataHandler;
     private IShopHandler shopHandler;
@@ -69,6 +72,8 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
     public IDataHandler getDataHandler() { return this.dataHandler == null? this.fallbackDataHandler : this.dataHandler; }
     @Override
     public ITokenHandler getTokenHandler() { return this.tokenHandler == null? this.fallbackTokenHandler : this.tokenHandler; }
+    @Override
+    public ISpawnerHandler getSpawnerHandler() { return this.spawnerHandler == null? this.fallbackSpawnerHandler : this.spawnerHandler; }
 
     public void registerShopHandler(IShopHandler shopHandler) {
         if(this.shopHandler != null) {
@@ -97,4 +102,14 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
         GalacticLib.get().log("Token handler has now been set to " + tokenHandler.getClass().getSimpleName() + ".");
         this.tokenHandler = tokenHandler;
     }
+    public void registerSpawnerHandler(ISpawnerHandler spawnerHandler) {
+        if(this.spawnerHandler != null) {
+            GalacticLib.get().log(Level.SEVERE, "An issue occurred when registering the new spawner handler '" + spawnerHandler.getClass().getSimpleName() + "', as a token handler is already set.");
+            return;
+        }
+
+        GalacticLib.get().log("Spawner handler has now been set to " + spawnerHandler.getClass().getSimpleName() + ".");
+        this.spawnerHandler = spawnerHandler;
+    }
+
 }
