@@ -46,6 +46,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 ConfColl.class,
 
                 EngineGui.class,
+                EngineArmorEquip.class,
 
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationGalacticShop.class,
