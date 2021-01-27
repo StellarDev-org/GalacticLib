@@ -15,7 +15,6 @@ public class Conf extends Entity<Conf> {
     public String msgDisabledDisplay = "&cdisabled";
 
     public String msgInvalidTime = "&e&lGalacticLib &8» &cThe time format you have provided is invalid. Please use &f1&c, &f1s&c, &f1m&c or &f1h&c.";
-
     public String msgInvalidMaterial = "&e&lGalacticLib &8» &cThe inputted material is invalid. Please try something like &fDirt&c, &f3&c, &f3:0&c, or &fDirt:0&c.";
 
     public String msgGuiNameNotSet = "&e&lGalacticLib &8» &cThe gui name is not setup for that gui.";
@@ -31,6 +30,7 @@ public class Conf extends Entity<Conf> {
     public String msgTeleportingDelayNoObject = "&e&lGalacticLib &8» &aTeleporting in &f%ss&a unless you move.";
     public String msgTeleportingNow = "&e&lGalacticLib &8» &aTeleported to &f%s&a.";
 
+    public String msgCooldown = "&e&lGalacticLib &8» &cYou cannot use that for another &f%s&c.";
 
     public String failedGuiDisplay = "&c&lERROR 404";
 
