@@ -12,6 +12,7 @@ import org.stellardev.galacticlib.integration.luckperms.*;
 import org.stellardev.galacticlib.integration.plotsquared.*;
 import org.stellardev.galacticlib.integration.silkspawners.*;
 import org.stellardev.galacticlib.integration.worldedit.*;
+import org.stellardev.galacticlib.mixin.MixinInventory;
 import org.stellardev.galacticlib.mixin.MixinTeleport;
 import org.stellardev.galacticlib.nms.*;
 import org.stellardev.galacticlib.provider.IDataHandlerProvider;
@@ -45,8 +46,9 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
         this.activate(
                 ConfColl.class,
 
-                EngineGui.class,
                 EngineArmorEquip.class,
+                EngineGui.class,
+                EngineSpawnerPlace.class,
 
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationGalacticShop.class,
@@ -56,6 +58,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 IntegrationSilkSpawners.class,
                 IntegrationWorldEdit.class,
 
+                MixinInventory.class,
                 MixinTeleport.class,
 
                 NmsArmorStandPacket.class,

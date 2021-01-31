@@ -5,14 +5,13 @@ import com.massivecraft.massivecore.util.InventoryUtil;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.stellardev.galacticlib.entity.Conf;
+import org.stellardev.galacticlib.mixin.MixinInventory;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @UtilityClass
 public class InvUtil {
@@ -69,5 +68,35 @@ public class InvUtil {
         TRANSPARENT_MATERIALS.add(Material.WATER);
 
         return TRANSPARENT_MATERIALS;
+    }
+
+    public static Inventory clone(Inventory inventory, InventoryType inventoryType) {
+        // Evade
+        if(inventory == null) return null;
+
+        // Create
+        Inventory ret = MixinInventory.get().createInventory(inventory.getHolder(), inventoryType, inventory.getType().getDefaultTitle());
+
+        // Fill
+        ItemStack[] all = InventoryUtil.getContentsAll(inventory);
+        all = InventoryUtil.clone(all);
+        InventoryUtil.setContentsAll(ret, all);
+
+        // Return
+        return ret;
+    }
+
+    public static int roomLeft(Inventory inventory, InventoryType inventoryType, ItemStack itemStack, int limit) {
+        inventory = clone(inventory, inventoryType);
+
+        int ret = 0;
+        while (limit <= 0 || ret < limit)
+        {
+            HashMap<Integer, ItemStack> result = inventory.addItem(itemStack.clone());
+            if (result.size() != 0) return ret;
+            ret++;
+        }
+
+        return ret;
     }
 }
