@@ -32,6 +32,8 @@ public class Conf extends Entity<Conf> {
 
     public String msgCooldown = "&e&lGalacticLib &8» &cYou cannot use that for another &f%s&c.";
 
+    public String msgDataHandlerNotFound = "&e&lGalacticLib &8» &cNo data could be found with that id.";
+
     public String failedGuiDisplay = "&c&lERROR 404";
 
     public long guiClickThrottleDelayMs = 200L;
