@@ -1,5 +1,6 @@
 package org.stellardev.galacticlib.handler.fallback;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -7,6 +8,7 @@ import org.stellardev.galacticlib.handler.IDataHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FallbackDataHandler implements IDataHandler {
 
@@ -38,5 +40,10 @@ public class FallbackDataHandler implements IDataHandler {
     @Override
     public List<String> getListOfEntityIds() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public List<Player> getListOfOnlinePlayers(String entityId) {
+        return new ArrayList<>(Bukkit.getOnlinePlayers());
     }
 }

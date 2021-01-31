@@ -19,4 +19,6 @@ public interface IDataHandler {
 
     List<String> getListOfEntityIds();
 
+    List<Player> getListOfOnlinePlayers(String entityId);
+
 }

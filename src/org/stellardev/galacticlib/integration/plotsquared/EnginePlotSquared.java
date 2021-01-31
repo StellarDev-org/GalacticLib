@@ -2,6 +2,7 @@ package org.stellardev.galacticlib.integration.plotsquared;
 
 import com.intellectualcrafters.plot.api.PlotAPI;
 import com.intellectualcrafters.plot.object.Plot;
+import com.intellectualcrafters.plot.object.PlotId;
 import com.massivecraft.massivecore.Engine;
 import com.plotsquared.bukkit.util.BukkitUtil;
 import org.bukkit.Bukkit;
@@ -11,12 +12,22 @@ import org.stellardev.galacticlib.handler.IDataHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class EnginePlotSquared extends Engine implements IDataHandler {
 
     private static final EnginePlotSquared i = new EnginePlotSquared();
     public static EnginePlotSquared get() { return i; }
+
+    private PlotAPI plotAPI;
+
+    @Override
+    public void setActiveInner(boolean active) {
+        if(!active) return;
+
+        this.plotAPI = new PlotAPI();
+    }
 
     @Override
     public boolean isInValidWorld(Location location) {
@@ -61,12 +72,28 @@ public class EnginePlotSquared extends Engine implements IDataHandler {
 
     @Override
     public List<String> getListOfEntityIds() {
-        PlotAPI plotAPI = new PlotAPI();
         List<String> ids = new ArrayList<>();
 
-        plotAPI.getAllPlots().stream().map(Plot::getId).forEach(id -> ids.add(id.toString()));
+        this.plotAPI.getAllPlots().stream().map(Plot::getId).forEach(id -> ids.add(id.toString()));
 
         return ids;
+    }
+
+    @Override
+    public List<Player> getListOfOnlinePlayers(String entityId) {
+        PlotId plotId = PlotId.fromString(entityId);
+
+        Plot plot = this.plotAPI.getAllPlots().stream()
+                .filter(pl -> pl.getId().equals(plotId))
+                .findFirst()
+                .orElse(null);
+
+        if(plot == null) return new ArrayList<>();
+
+        return plot.getMembers().stream()
+                .map(Bukkit::getPlayer)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     private com.intellectualcrafters.plot.object.Location getPlotLocation(Location location) {
