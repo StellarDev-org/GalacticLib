@@ -1,7 +1,6 @@
 name: GalacticLib
 main: org.stellardev.galacticlib.GalacticLib
 version: ${project.version}
-load: STARTUP
 depend:
   - MassiveCore
 authors:

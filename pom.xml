@@ -39,7 +39,7 @@
                     <artifactSet>
                         <includes>
                             <include>commons-codec:commons-codec</include>
-                            <include>de.tr7zw.nbtapi:NBTAPI</include>
+                            <include>de.tr7zw:item-nbt-api</include>
                             <include>com.zaxxer:HikariCP</include>
                         </includes>
                     </artifactSet>
@@ -54,6 +54,10 @@
                     <relocations>
                         <relocation>
                             <pattern>de.tr7zw.changeme</pattern>
+                            <shadedPattern>org.stellardev.galacticlib.xlib</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.zaxxer</pattern>
                             <shadedPattern>org.stellardev.galacticlib.xlib</shadedPattern>
                         </relocation>
                     </relocations>
