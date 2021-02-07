@@ -66,7 +66,8 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 NmsPacket.class,
                 NmsPing.class,
                 NmsSkullTexture.class,
-                NmsTps.class
+                NmsTps.class,
+                NmsWorldBorder.class
         );
     }
 
