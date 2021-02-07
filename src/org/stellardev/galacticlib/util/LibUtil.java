@@ -1,11 +1,16 @@
 package org.stellardev.galacticlib.util;
 
+import com.massivecraft.massivecore.particleeffect.ReflectionUtils;
+import com.massivecraft.massivecore.util.ReflectionUtil;
 import com.massivecraft.massivecore.util.Txt;
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 @UtilityClass
@@ -54,7 +59,8 @@ public class LibUtil {
             return true;
         }
     }
-    public static String getTimeDescription(long millis) {
+
+    public String getTimeDescription(long millis) {
         String ret = "";
 
         List<String> unitCountParts = new ArrayList<>();
@@ -78,4 +84,20 @@ public class LibUtil {
         return ret;
     }
 
+    public String getStackName(ItemStack itemStack) {
+        String itemName = WordUtils.capitalizeFully(itemStack.getType().name().replace("_", " "));
+
+        try {
+            Method asCraftCopy = ReflectionUtil.getMethod(ReflectionUtils.PackageType.CRAFTBUKKIT_INVENTORY.getClass("CraftItemStack"), "asCraftCopy", ItemStack.class);
+            Method asNMSCopy = ReflectionUtil.getMethod(ReflectionUtils.PackageType.CRAFTBUKKIT_INVENTORY.getClass("CraftItemStack"), "asNMSCopy", ItemStack.class);
+            Object craftCopy = ReflectionUtil.invokeMethod(asCraftCopy, null, itemStack);
+            Object nmsStack = ReflectionUtil.invokeMethod(asNMSCopy, null, craftCopy);
+            itemName = ReflectionUtil.invokeMethod(ReflectionUtil.getMethod(ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("ItemStack"), "getName"), nmsStack);
+            return itemName;
+        } catch (Exception var9) {
+            return itemName;
+        } finally {
+            ;
+        }
+    }
 }
