@@ -6,7 +6,7 @@
 
     <groupId>org.stellardev.galactic</groupId>
     <artifactId>GalacticLib</artifactId>
-    <version>1.10.1</version>
+    <version>1.11.1</version>
     <packaging>jar</packaging>
 
     <build>
@@ -41,6 +41,7 @@
                             <include>commons-codec:commons-codec</include>
                             <include>de.tr7zw:item-nbt-api</include>
                             <include>com.zaxxer:HikariCP</include>
+                            <include>org.slf4j:slf4j-api</include>
                         </includes>
                     </artifactSet>
                     <filters>
