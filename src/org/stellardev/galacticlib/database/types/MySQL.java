@@ -30,8 +30,16 @@ public abstract class MySQL extends Database {
 
     @Override
     public void openConnection() throws Exception {
+        if(Conf.get().sqlDatabaseIp.isEmpty()) {
+            throw new Exception("Database IP is not set in the galacticlib_conf.");
+        }
+
+        if(this.databaseName == null || this.databaseName.isEmpty()) {
+            throw new Exception("Database name is not set.");
+        }
+
         if(this.username == null || this.password == null) {
-            throw new NullPointerException("Database username and/or password is not set.");
+            throw new Exception("Database username and/or password is not set.");
         }
 
         if(this.hikariDataSource != null && !this.hikariDataSource.isClosed()) {
