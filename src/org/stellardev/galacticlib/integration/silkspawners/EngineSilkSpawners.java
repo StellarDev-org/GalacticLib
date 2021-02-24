@@ -3,6 +3,7 @@ package org.stellardev.galacticlib.integration.silkspawners;
 import com.massivecraft.massivecore.Engine;
 import de.dustplanet.util.SilkUtil;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
@@ -75,6 +76,8 @@ public class EngineSilkSpawners extends Engine implements ISpawnerHandler {
 
     @Override
     public ItemStack getSpawnerItem(int amount, EntityType entityType) {
+        if(entityType == null) return new ItemStack(Material.MOB_SPAWNER, amount);
+
         String entityName = entityType.name().toLowerCase();
 
         return getSilkUtil().newSpawnerItem(entityName, getSilkUtil().getCustomSpawnerName(entityName), amount, false);
