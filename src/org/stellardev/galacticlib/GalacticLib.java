@@ -7,6 +7,7 @@ import org.stellardev.galacticlib.handler.*;
 import org.stellardev.galacticlib.handler.fallback.*;
 import org.stellardev.galacticlib.integration.fastasyncworldedit.*;
 import org.stellardev.galacticlib.integration.galacticshop.IntegrationGalacticShop;
+import org.stellardev.galacticlib.integration.galacticskyblock.IntegrationGalacticSkyBlock;
 import org.stellardev.galacticlib.integration.galactictokens.IntegrationGalacticTokens;
 import org.stellardev.galacticlib.integration.luckperms.*;
 import org.stellardev.galacticlib.integration.plotsquared.*;
@@ -52,6 +53,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
 
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationGalacticShop.class,
+                IntegrationGalacticSkyBlock.class,
                 IntegrationGalacticTokens.class,
                 IntegrationLuckPerms.class,
                 IntegrationPlotSquared.class,

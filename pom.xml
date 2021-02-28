@@ -195,6 +195,12 @@
             <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>org.stellardev.galactic</groupId>
+            <artifactId>GalacticSkyBlock</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <repositories>
