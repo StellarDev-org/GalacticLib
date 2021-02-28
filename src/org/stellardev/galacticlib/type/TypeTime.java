@@ -27,7 +27,7 @@ public class TypeTime extends TypeAbstract<Long> {
             multiplier = 3600;
         }
 
-        String pattern = "[^\\d.,]";
+        String pattern = "[^0-9]";
         String number = arg.replaceAll(pattern, "");
 
         try {
