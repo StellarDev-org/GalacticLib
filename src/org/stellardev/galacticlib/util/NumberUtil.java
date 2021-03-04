@@ -54,7 +54,7 @@ public class NumberUtil {
         return SINGLE_DECIMAL.format(((double) amount / (double) divideBy)) + suffix;
     }
 
-    public String getProgressBar(int current, int max, int totalBars, String symbol, ChatColor completeColor, ChatColor notCompleteColor) {
+    public String getProgressBar(long current, long max, int totalBars, String symbol, ChatColor completeColor, ChatColor notCompleteColor) {
         float percent = (float) current / max;
         int progressBars = (int) (totalBars * percent);
         int leftOver = (totalBars - progressBars);
@@ -76,7 +76,7 @@ public class NumberUtil {
         return stringBuilder.toString();
     }
 
-    public int getPercent(int current, int max) {
+    public int getPercent(long current, long max) {
         double onePercent = max * 0.01;
 
         return (int) (current / onePercent);
