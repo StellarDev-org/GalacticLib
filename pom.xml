@@ -6,7 +6,7 @@
 
     <groupId>org.stellardev.galactic</groupId>
     <artifactId>GalacticLib</artifactId>
-    <version>1.11.4</version>
+    <version>1.12.5</version>
     <packaging>jar</packaging>
 
     <build>
@@ -182,6 +182,18 @@
             <version>6.0.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.github.brcdev-minecraft</groupId>
+            <artifactId>shopgui-api</artifactId>
+            <version>2.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.bgsoftware</groupId>
+            <artifactId>SuperiorSkyblockAPI</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency> <!-- PROVIDED -->
             <groupId>org.stellardev.galactic</groupId>
@@ -224,6 +236,14 @@
         <repository>
             <id>placeholderapi-repo</id>
             <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>bg-repo</id>
+            <url>https://repo.bg-software.com/repository/api/</url>
         </repository>
     </repositories>
 </project>

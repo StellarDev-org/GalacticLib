@@ -11,7 +11,9 @@ import org.stellardev.galacticlib.integration.galacticskyblock.IntegrationGalact
 import org.stellardev.galacticlib.integration.galactictokens.IntegrationGalacticTokens;
 import org.stellardev.galacticlib.integration.luckperms.*;
 import org.stellardev.galacticlib.integration.plotsquared.*;
+import org.stellardev.galacticlib.integration.shopguiplus.IntegrationShopGuiPlus;
 import org.stellardev.galacticlib.integration.silkspawners.*;
+import org.stellardev.galacticlib.integration.superiorskyblock2.IntegrationSuperiorSkyblock2;
 import org.stellardev.galacticlib.integration.worldedit.*;
 import org.stellardev.galacticlib.mixin.MixinInventory;
 import org.stellardev.galacticlib.mixin.MixinTeleport;
@@ -57,7 +59,9 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 IntegrationGalacticTokens.class,
                 IntegrationLuckPerms.class,
                 IntegrationPlotSquared.class,
+                IntegrationShopGuiPlus.class,
                 IntegrationSilkSpawners.class,
+                IntegrationSuperiorSkyblock2.class,
                 IntegrationWorldEdit.class,
 
                 MixinInventory.class,
