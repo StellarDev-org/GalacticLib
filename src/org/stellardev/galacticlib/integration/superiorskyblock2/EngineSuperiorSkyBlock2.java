@@ -50,12 +50,12 @@ public class EngineSuperiorSkyBlock2 extends Engine implements IDataHandler {
     public boolean canAccess(Player player, Location location) {
         Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
-        if (island == null) return false;
+        if (island == null) return true;
 
         UUID owner = island.getOwner().getUniqueId();
         UUID playerUUID = player.getUniqueId();
 
-        if (owner == null || owner.equals(playerUUID)) return false;
+        if (owner == null || owner.equals(playerUUID)) return true;
 
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(playerUUID);
 
