@@ -34,6 +34,10 @@ public class NmsSkullTexture extends Mixin {
         throw notImplemented();
     }
 
+    public void set(SkullMeta skullMeta, String name, UUID id) {
+        throw notImplemented();
+    }
+
     public String getTexture(SkullMeta skullMeta) {
         throw notImplemented();
     }

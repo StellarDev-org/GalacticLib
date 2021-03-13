@@ -66,7 +66,7 @@ public class SkullUtil {
         ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
-        NmsSkullMeta.get().set(skullMeta, name, uuid);
+        NmsSkullTexture.get().set(skullMeta, name, uuid);
         itemStack.setItemMeta(skullMeta);
 
         return itemStack;
