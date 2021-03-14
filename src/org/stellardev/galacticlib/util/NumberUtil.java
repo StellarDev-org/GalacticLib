@@ -94,4 +94,68 @@ public class NumberUtil {
         return CHANCE_FORMAT.format(chance);
     }
 
+    public double readStringAmount(String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (Exception ignore) {}
+
+        String suffix = null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean decimalPlace = false;
+        int decimalPosition = 0;
+
+        for(char c : input.toCharArray()) {
+            if(Character.isLetter(c)) {
+                suffix = Character.toString(c);
+                break;
+            } else {
+                if(decimalPlace) {
+                    if(decimalPosition >= 3) {
+                        continue;
+                    }
+
+                    stringBuilder.append(c);
+                    decimalPosition += 1;
+
+                    continue;
+                }
+
+                if(c == '.') {
+                    decimalPlace = true;
+                }
+
+                stringBuilder.append(c);
+            }
+        }
+
+        input = stringBuilder.toString();
+
+        String finalSuffix = suffix;
+
+        Double value = null;
+        Long multiplier = null;
+
+        Map.Entry<Long, String> foundEntry = SUFFIXES.entrySet().stream()
+                .filter(entry -> entry.getValue().equalsIgnoreCase(finalSuffix))
+                .findFirst()
+                .orElse(null);
+
+        if(foundEntry != null) {
+            multiplier = foundEntry.getKey();
+        }
+
+        try {
+            value = Double.parseDouble(input);
+        } catch (Exception ignore) {}
+
+        if(value == null) return 0L;
+
+        if(multiplier != null) {
+            value *= multiplier;
+        }
+
+        return value;
+    }
+
 }
