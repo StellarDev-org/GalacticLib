@@ -131,9 +131,7 @@ public class NmsSkullTexture18R1P extends NmsSkullTexture {
 
     @Override
     public void set(SkullMeta skullMeta, String name, UUID id) {
-        Object gameProfile = createGameProfile(id, name);
-
-        setGameProfile(skullMeta, gameProfile);
+        skullMeta.setOwner(name);
     }
 
     // -------------------------------------------- //
