@@ -12,7 +12,11 @@ public interface ISpawnerHandler {
     ItemStack getSpawnerItem(int amount, EntityType entityType);
 
     default EntityType getEntityTypeFromLocation(Location location) {
-        return null;
+        if(!(location.getBlock().getState() instanceof CreatureSpawner)) return null;
+
+        CreatureSpawner creatureSpawner = (CreatureSpawner) location.getBlock().getState();
+
+        return creatureSpawner.getSpawnedType();
     }
 
     default String getSpawnerTypeFromLocation(Location location) {
