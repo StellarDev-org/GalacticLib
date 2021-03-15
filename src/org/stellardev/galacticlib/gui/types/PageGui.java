@@ -1,12 +1,12 @@
 package org.stellardev.galacticlib.gui.types;
 
-import com.massivecraft.massivecore.MassiveCore;
 import com.massivecraft.massivecore.util.InventoryUtil;
 import com.massivecraft.massivecore.util.MUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.stellardev.galacticlib.GalacticLib;
 import org.stellardev.galacticlib.gui.IGuiClick;
 import org.stellardev.galacticlib.gui.configuration.GuiDesign;
 import org.stellardev.galacticlib.item.ItemStackWrapper;
@@ -127,7 +127,7 @@ public abstract class PageGui<T> extends RefreshGui implements IClickableGui {
             this.trueSlotMap.put(i-startIndex, realSlot);
 
             if(realSlot == -1) {
-                MassiveCore.get().log("Issue loading page; item listing slot is -1");
+                GalacticLib.get().log("Issue loading page; item listing slot is -1");
                 break;
             }
 
