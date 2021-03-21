@@ -165,7 +165,7 @@ public class ItemStackWrapper {
             List<String> lore = metaWrapper.getLore();
             Map<String, Integer> enchants = metaWrapper.getEnchants();
             Set<ItemFlag> itemFlags = metaWrapper.getItemFlags();
-            Map<String, Object> nbt = metaWrapper.getNbtMap();
+            Map<String, String> nbt = metaWrapper.getNbtMap();
 
             if(displayName != null) itemMeta.setDisplayName(TxtUtil.parseAndReplace(displayName, replacements));
             if(lore != null) itemMeta.setLore(TxtUtil.parseAndReplace(lore, replacements));
@@ -185,7 +185,7 @@ public class ItemStackWrapper {
             itemStack.setItemMeta(itemMeta);
 
             if(nbt != null) {
-                itemStack = NbtUtil.setKeys(itemStack, nbt);
+                itemStack = NbtUtil.setSerializedNbt(itemStack, nbt);
             }
         }
 
@@ -220,46 +220,7 @@ public class ItemStackWrapper {
             }
         }
 
-        if(this.meta != null) {
-            MetaWrapper metaWrapper = this.meta;
-            ItemMeta itemMeta = clone.getItemMeta();
-            String displayName = metaWrapper.getDisplayName();
-            List<String> lore = metaWrapper.getLore();
-            Map<String, Integer> enchants = metaWrapper.getEnchants();
-            Set<ItemFlag> itemFlags = metaWrapper.getItemFlags();
-            boolean unbreakable = metaWrapper.isUnbreakable();
-            Map<String, Object> nbt = metaWrapper.getNbtMap();
-
-            if(itemMeta == null) {
-                throw new NullPointerException("itemMeta is null!");
-            }
-            if(replacements == null) {
-                throw new NullPointerException("replacements is null!");
-            }
-
-            if(displayName != null) itemMeta.setDisplayName(TxtUtil.parseAndReplace(displayName, replacements));
-            if(lore != null) itemMeta.setLore(TxtUtil.parseAndReplace(lore, replacements));
-            if(enchants != null) {
-                enchants.forEach((enchant, level) -> {
-                    Enchantment enchantment = Enchantment.getByName(enchant);
-
-                    if(enchant == null) return;
-
-                    itemMeta.addEnchant(enchantment, level, true);
-                });
-            }
-            if(itemFlags != null) {
-                itemFlags.forEach(itemMeta::addItemFlags);
-            }
-            itemMeta.spigot().setUnbreakable(unbreakable);
-
-            clone.setItemMeta(itemMeta);
-
-
-            if(nbt != null) {
-                clone = NbtUtil.setKeys(clone, nbt);
-            }
-        }
+        applyMeta(clone, replacements);
 
         return clone;
     }
@@ -278,9 +239,7 @@ public class ItemStackWrapper {
 
             if(itemMeta.hasDisplayName()) metaWrapper.setDisplayName(itemMeta.getDisplayName());
             if(itemMeta.hasLore()) metaWrapper.setLore(itemMeta.getLore());
-            if(itemMeta.hasEnchants()) {
-                itemMeta.getEnchants().forEach((enchant, level) -> metaWrapper.addEnchant(enchant.getName(), level));
-            }
+            if(itemMeta.hasEnchants()) itemMeta.getEnchants().forEach((enchant, level) -> metaWrapper.addEnchant(enchant.getName(), level));
             if(!itemMeta.getItemFlags().isEmpty()) metaWrapper.setItemFlags(itemMeta.getItemFlags());
             if(itemMeta.spigot().isUnbreakable()) metaWrapper.setUnbreakable(true);
 
@@ -295,6 +254,12 @@ public class ItemStackWrapper {
                 }
 
                 itemStackWrapperBuilder.skull(skullWrapper);
+            }
+
+            Map<String, String> itemNbt = NbtUtil.getSerializedNbtValues(itemStack);
+
+            if(itemNbt != null) {
+                metaWrapper.setNbtMap(itemNbt);
             }
 
             itemStackWrapperBuilder.meta(metaWrapper);

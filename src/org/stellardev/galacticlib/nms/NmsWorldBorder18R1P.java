@@ -114,6 +114,10 @@ public class NmsWorldBorder18R1P extends NmsWorldBorder {
         }
     }
 
+    // -------------------------------------------- //
+    // RAW
+    // -------------------------------------------- //
+
     @Override
     public void sendBorder(Player player, Location location, double radius) {
         Object worldBorder = ReflectionUtil.invokeConstructor(this.constructorWorldBorder);

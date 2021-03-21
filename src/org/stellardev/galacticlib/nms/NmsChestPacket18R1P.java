@@ -10,8 +10,16 @@ import java.lang.reflect.Field;
 
 public class NmsChestPacket18R1P extends NmsChestPacket {
 
+    // -------------------------------------------- //
+    // INSTANCE & CONSTRUCT
+    // -------------------------------------------- //
+
     private static final NmsChestPacket18R1P i = new NmsChestPacket18R1P();
     public static NmsChestPacket18R1P get() { return i; }
+
+    // -------------------------------------------- //
+    // FIELDS
+    // -------------------------------------------- //
 
     // net.minecraft.server.BlockPosition
     protected Class<?> classBlockPosition;

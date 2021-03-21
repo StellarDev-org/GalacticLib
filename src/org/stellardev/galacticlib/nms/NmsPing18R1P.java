@@ -16,6 +16,10 @@ public class NmsPing18R1P extends NmsPing {
     private static final NmsPing18R1P i = new NmsPing18R1P();
     public static NmsPing18R1P get() { return i; }
 
+    // -------------------------------------------- //
+    // FIELDS
+    // -------------------------------------------- //
+
     // org.bukkit.craftbukkit.entity.CraftPlayer
     protected Class<?> classCraftPlayer;
     // ...#getHandle
@@ -26,6 +30,10 @@ public class NmsPing18R1P extends NmsPing {
     // ...#ping
     protected Field fieldEntityPlayerPing;
 
+    // -------------------------------------------- //
+    // SETUP
+    // -------------------------------------------- //
+
     @Override
     public void setup() throws Throwable {
         this.classCraftPlayer = ReflectionUtils.PackageType.CRAFTBUKKIT_ENTITY.getClass("CraftPlayer");
@@ -34,6 +42,10 @@ public class NmsPing18R1P extends NmsPing {
         this.classEntityPlayer = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("EntityPlayer");
         this.fieldEntityPlayerPing = ReflectionUtil.getField(this.classEntityPlayer, "ping");
     }
+
+    // -------------------------------------------- //
+    // RAW
+    // -------------------------------------------- //
 
     @Override
     public int getPing(Player player) {

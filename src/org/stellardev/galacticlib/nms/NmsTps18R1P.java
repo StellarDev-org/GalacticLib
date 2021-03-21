@@ -9,8 +9,16 @@ import java.lang.reflect.Method;
 
 public class NmsTps18R1P extends NmsTps {
 
+    // -------------------------------------------- //
+    // INSTANCE & CONSTRUCT
+    // -------------------------------------------- //
+
     private static final NmsTps18R1P i = new NmsTps18R1P();
     public static NmsTps18R1P get() { return i; }
+
+    // -------------------------------------------- //
+    // FIELDS
+    // -------------------------------------------- //
 
     // org.bukkit.craftbukkit.CraftServer
     protected Class<?> classCraftServer;
@@ -22,6 +30,10 @@ public class NmsTps18R1P extends NmsTps {
     // ...#recentTps
     protected Field fieldRecentTps;
 
+    // -------------------------------------------- //
+    // SETUP
+    // -------------------------------------------- //
+
     @Override
     public void setup() throws Throwable {
         this.classCraftServer = ReflectionUtils.PackageType.CRAFTBUKKIT.getClass("CraftServer");
@@ -30,6 +42,10 @@ public class NmsTps18R1P extends NmsTps {
         this.classMinecraftServer = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("MinecraftServer");
         this.fieldRecentTps = ReflectionUtil.getField(this.classMinecraftServer, "recentTps");
     }
+
+    // -------------------------------------------- //
+    // RAW
+    // -------------------------------------------- //
 
     @Override
     public double getTps() {

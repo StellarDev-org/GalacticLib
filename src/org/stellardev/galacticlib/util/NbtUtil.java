@@ -10,6 +10,38 @@ import java.util.*;
 @UtilityClass
 public class NbtUtil {
 
+    // -------------------------------------------- //
+    // SET NBT
+    // -------------------------------------------- //
+
+    public ItemStack setSerializedNbt(ItemStack itemStack, Map<String, String> serializedNbt) {
+        if(InventoryUtil.isNothing(itemStack)) return itemStack;
+
+        for(Map.Entry<String, String> entry : serializedNbt.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            String[] split = value.split(":");
+            Object object = split[1];
+
+            switch (split[0]) {
+                case "D":
+                    itemStack = setKey(itemStack, key, (double) object);
+                    break;
+                case "S":
+                    itemStack = setKey(itemStack, key, (String) object);
+                    break;
+                case "L":
+                    itemStack = setKey(itemStack, key, (long) object);
+                    break;
+                case "I":
+                    itemStack = setKey(itemStack, key, (int) object);
+                    break;
+            }
+        }
+
+        return itemStack;
+    }
+
     public ItemStack setKeys(ItemStack itemStack, Map<String, Object> nbt) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
@@ -57,6 +89,10 @@ public class NbtUtil {
         return nbtItem.getItem();
     }
 
+    // -------------------------------------------- //
+    // HAS NBT
+    // -------------------------------------------- //
+
     public boolean hasKey(ItemStack itemStack, String... keys) {
         if(InventoryUtil.isNothing(itemStack)) return false;
 
@@ -74,6 +110,11 @@ public class NbtUtil {
 
         return containsAll;
     }
+
+    // -------------------------------------------- //
+    // REMOVE NBT
+    // -------------------------------------------- //
+
     public ItemStack removeKey(ItemStack itemStack, String... keys) {
         if(InventoryUtil.isNothing(itemStack)) return itemStack;
 
@@ -84,12 +125,52 @@ public class NbtUtil {
         return nbtItem.getItem();
     }
 
+    // -------------------------------------------- //
+    // GET NBT
+    // -------------------------------------------- //
+
     public Set<String> getKeySet(ItemStack itemStack) {
         if(InventoryUtil.isNothing(itemStack)) return new HashSet<>();
 
         NBTItem nbtItem = new NBTItem(itemStack);
 
         return nbtItem.getKeys();
+    }
+
+    public Map<String, Object> getNbtValues(ItemStack itemStack) {
+        if(InventoryUtil.isNothing(itemStack)) return new HashMap<>();
+
+        NBTItem nbtItem = new NBTItem(itemStack);
+        Map<String, Object> objectMap = new HashMap<>();
+
+        nbtItem.getKeys().forEach(key -> {
+            Object object = getValue(nbtItem, key);
+
+            if(object == null) return;
+
+            objectMap.put(key, object);
+        });
+
+        return objectMap;
+    }
+
+    public Map<String, String> getSerializedNbtValues(ItemStack itemStack) {
+        if(InventoryUtil.isNothing(itemStack)) return null;
+
+        Map<String, Object> nbtData = getNbtValues(itemStack);
+
+        if(nbtData.isEmpty()) return null;
+
+        Map<String, String> map = new HashMap<>();
+
+        nbtData.forEach((key, data) -> {
+            if(data instanceof Double) map.put(key, "D:" + data);
+            else if(data instanceof String) map.put(key, "S:" + data);
+            else if(data instanceof Long) map.put(key, "L:" + data);
+            else if(data instanceof Integer) map.put(key, "I:" + data);
+        });
+
+        return map;
     }
 
     public String getKeyStringValue(ItemStack itemStack, String key) {
@@ -125,5 +206,18 @@ public class NbtUtil {
         Double doublee = nbtItem.getDouble(key);
 
         return doublee == null? 0 : doublee;
+    }
+
+    private Object getValue(NBTItem nbtItem, String key) {
+        Double doublee = nbtItem.getDouble(key);
+        String stringg = nbtItem.getString(key);
+        Long longg = nbtItem.getLong(key);
+        Integer integer = nbtItem.getInteger(key);
+
+        if(doublee != null) return doublee;
+        if(stringg != null) return stringg;
+        if(longg != null) return longg;
+
+        return integer;
     }
 }
