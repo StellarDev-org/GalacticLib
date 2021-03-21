@@ -220,9 +220,7 @@ public class ItemStackWrapper {
             }
         }
 
-        applyMeta(clone, replacements);
-
-        return clone;
+        return applyMeta(clone, replacements);
     }
 
     public static ItemStackWrapper toWrapper(ItemStack itemStack) {

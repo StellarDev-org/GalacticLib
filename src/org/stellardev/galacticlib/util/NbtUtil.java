@@ -1,6 +1,7 @@
 package org.stellardev.galacticlib.util;
 
 import com.massivecraft.massivecore.util.InventoryUtil;
+import com.massivecraft.massivecore.util.MUtil;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
@@ -9,6 +10,8 @@ import java.util.*;
 
 @UtilityClass
 public class NbtUtil {
+
+    private final List<String> DEFAULT_NBT_TAGS = MUtil.list("id", "Count", "Damage", "tag", "ench", "HideFlags", "Unbreakable", "display");
 
     // -------------------------------------------- //
     // SET NBT
@@ -21,20 +24,20 @@ public class NbtUtil {
             String key = entry.getKey();
             String value = entry.getValue();
             String[] split = value.split(":");
-            Object object = split[1];
+            String obj = split[1];
 
             switch (split[0]) {
                 case "D":
-                    itemStack = setKey(itemStack, key, (double) object);
+                    itemStack = setKey(itemStack, key, Double.parseDouble(obj));
                     break;
                 case "S":
-                    itemStack = setKey(itemStack, key, (String) object);
+                    itemStack = setKey(itemStack, key, obj);
                     break;
                 case "L":
-                    itemStack = setKey(itemStack, key, (long) object);
+                    itemStack = setKey(itemStack, key, Long.parseLong(obj));
                     break;
                 case "I":
-                    itemStack = setKey(itemStack, key, (int) object);
+                    itemStack = setKey(itemStack, key, Integer.parseInt(obj));
                     break;
             }
         }
@@ -164,10 +167,12 @@ public class NbtUtil {
         Map<String, String> map = new HashMap<>();
 
         nbtData.forEach((key, data) -> {
-            if(data instanceof Double) map.put(key, "D:" + data);
-            else if(data instanceof String) map.put(key, "S:" + data);
+            if(DEFAULT_NBT_TAGS.contains(key)) return;
+
+            if(data instanceof Integer) map.put(key, "I:" + data);
             else if(data instanceof Long) map.put(key, "L:" + data);
-            else if(data instanceof Integer) map.put(key, "I:" + data);
+            else if(data instanceof Double) map.put(key, "D:" + data);
+            else if(data instanceof String) map.put(key, "S:" + data);
         });
 
         return map;
@@ -214,10 +219,10 @@ public class NbtUtil {
         Long longg = nbtItem.getLong(key);
         Integer integer = nbtItem.getInteger(key);
 
-        if(doublee != null) return doublee;
-        if(stringg != null) return stringg;
+        if(integer != null) return integer;
         if(longg != null) return longg;
+        if(doublee != null) return doublee;
 
-        return integer;
+        return stringg;
     }
 }

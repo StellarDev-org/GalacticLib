@@ -158,4 +158,31 @@ public class NumberUtil {
         return value;
     }
 
+    public boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+
+    public boolean isLong(String input) {
+        try {
+            Long.parseLong(input);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+
+    public boolean isDouble(String input) {
+        try {
+            Double.parseDouble(input);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+
 }
