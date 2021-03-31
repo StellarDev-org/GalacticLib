@@ -36,6 +36,11 @@ public abstract class BaseGui {
         addGuiCloseTask(event -> INVENTORY_TO_GUI.remove(this.inventory));
     }
 
+    public BaseGui(GuiDesign guiDesign) {
+        this.player = null;
+        this.guiDesign = guiDesign;
+    }
+
     protected void preloadGui() {}
 
     protected void loadGui() {
@@ -45,6 +50,10 @@ public abstract class BaseGui {
         }
 
         INVENTORY_TO_GUI.put(this.inventory, this);
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     public boolean isAllowBottomGuiClick() {
@@ -89,40 +98,42 @@ public abstract class BaseGui {
         return this.clickableSlots.getOrDefault(slot, null);
     }
 
+    public void buildGui() {
+        if(this.guiDesign == null) {
+            if(this.player != null) MixinMessage.get().msgOne(this.player, Conf.get().msgGuiDesignNotSet);
+            return;
+        }
+
+        this.inventory = this.guiDesign.build(this.player, getReplacements().toArray(new String[0]));
+
+        preloadGui();
+
+        if(this instanceof IClickableGui) {
+            IClickableGui clickableGui = (IClickableGui) this;
+
+            clickableGui.loadClicks();
+        }
+
+        loadGui();
+
+        if(this instanceof RefreshGui) {
+            RefreshGui refreshGui = (RefreshGui) this;
+
+            refreshGui.refresh();
+        }
+    }
+
     public void open() {
         openDelayed(0L);
     }
-
     public void openDelayed(long delayTick) {
         Bukkit.getScheduler().runTaskLater(MassiveCore.get(), () -> {
-            if(this.player == null) {
-                MixinMessage.get().msgOne(Bukkit.getConsoleSender(), Conf.get().msgGuiPlayerNotSet);
-                return;
+
+            buildGui();
+
+            if(this.player != null) {
+                this.player.openInventory(this.inventory);
             }
-            if(this.guiDesign == null) {
-                MixinMessage.get().msgOne(this.player, Conf.get().msgGuiDesignNotSet);
-                return;
-            }
-
-            this.inventory = this.guiDesign.build(this.player, getReplacements().toArray(new String[0]));
-
-            preloadGui();
-
-            if(this instanceof IClickableGui) {
-                IClickableGui clickableGui = (IClickableGui) this;
-
-                clickableGui.loadClicks();
-            }
-
-            loadGui();
-
-            if(this instanceof RefreshGui) {
-                RefreshGui refreshGui = (RefreshGui) this;
-
-                refreshGui.refresh();
-            }
-
-            this.player.openInventory(this.inventory);
         }, delayTick);
     }
 

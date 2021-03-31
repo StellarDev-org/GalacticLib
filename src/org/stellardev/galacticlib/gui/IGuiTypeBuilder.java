@@ -9,5 +9,6 @@ import java.util.List;
 public interface IGuiTypeBuilder {
 
     Inventory build(Player player, String guiName, List<String> guiFormat, String... replacements) throws MassiveException;
+    Inventory build(String guiName, List<String> guiFormat, String... replacements) throws MassiveException;
 
 }

@@ -1,6 +1,10 @@
 package org.stellardev.galacticlib.entity;
 
 import com.massivecraft.massivecore.store.Entity;
+import com.massivecraft.massivecore.util.MUtil;
+import org.bukkit.Material;
+
+import java.util.List;
 
 public class Conf extends Entity<Conf> {
 
@@ -46,5 +50,22 @@ public class Conf extends Entity<Conf> {
 
     public boolean sqlLogPool = true;
     public long sqlLogPoolDelayTick = 200L;
+
+    //--------------------------//
+    // FORTUNE SETTINGS
+    //--------------------------//
+
+    public List<Material> fortuneMaterials = MUtil.list(
+            Material.COAL, Material.REDSTONE,
+            Material.IRON_INGOT, Material.GOLD_INGOT,
+            Material.DIAMOND, Material.EMERALD,
+            Material.REDSTONE, Material.QUARTZ
+    );
+
+    public boolean randomFortuneDropAmounts = true;
+    public double fortuneLevelMultiplier = 1.0D;
+    public int fortuneMinDrops = 1;
+    public int fortuneMaxDrops = 60;
+    public double fortuneModifier = 0.005;
 
 }

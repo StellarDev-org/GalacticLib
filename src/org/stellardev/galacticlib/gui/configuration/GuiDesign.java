@@ -6,6 +6,7 @@ import com.massivecraft.massivecore.util.InventoryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.stellardev.galacticlib.GalacticLib;
 import org.stellardev.galacticlib.entity.Conf;
 import org.stellardev.galacticlib.gui.IGuiBuilder;
 import org.stellardev.galacticlib.item.ItemStackWrapper;
@@ -94,8 +95,14 @@ public class GuiDesign implements IGuiBuilder {
 
             return inventory;
         } catch (MassiveException ex) {
-            MixinMessage.get().messageOne(player, ex.getMessages());
+            if(player != null) {
+                MixinMessage.get().messageOne(player, ex.getMessages());
+            }
             return Bukkit.createInventory(player, 0, TxtUtil.parse(Conf.get().failedGuiDisplay));
         }
+    }
+
+    public Inventory build(String... replacements) {
+        return build(null, replacements);
     }
 }

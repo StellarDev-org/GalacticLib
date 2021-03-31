@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
+import org.stellardev.galacticlib.GalacticLib;
 import org.stellardev.galacticlib.entity.Conf;
 import org.stellardev.galacticlib.gui.IGuiTypeBuilder;
 import org.stellardev.galacticlib.util.TxtUtil;
@@ -68,6 +69,10 @@ public enum GuiType implements IGuiTypeBuilder {
         } else {
             return Bukkit.createInventory(player, rows * 9, TxtUtil.parseAndReplace(guiName, replacements));
         }
+    }
+
+    public Inventory build(String guiName, List<String> guiFormat, String... replacements) throws MassiveException {
+        return build(null, guiName, guiFormat, replacements);
     }
 
     public static GuiType getFromFormat(List<String> guiFormat) throws MassiveException {

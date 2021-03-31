@@ -9,6 +9,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.stellardev.galacticlib.entity.Conf;
+import org.stellardev.galacticlib.event.PlayerInventoryFullDropItemEvent;
 import org.stellardev.galacticlib.mixin.MixinInventory;
 
 import java.util.*;
@@ -36,6 +37,8 @@ public class InvUtil {
         if(player == null || itemStack == null) return;
 
         if(player.getInventory().firstEmpty() == -1) {
+            if(!LibUtil.callEvent(new PlayerInventoryFullDropItemEvent(player, itemStack))) return;
+
             player.getWorld().dropItemNaturally(player.getLocation(), itemStack);
             MixinMessage.get().msgOne(player, Conf.get().msgInventoryFull);
         } else {
