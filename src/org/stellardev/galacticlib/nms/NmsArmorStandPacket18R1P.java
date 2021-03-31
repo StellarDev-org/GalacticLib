@@ -377,7 +377,8 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
 
         @Override
         public void remove() {
-            Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityDestroy, getId());
+            int[] id = {getId()};
+            Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityDestroy, id);
             NmsPacket.get().sendPacket(this.player, packet);
 
             ReflectionUtil.invokeMethod(methodEntityArmorStandDie, this.entityArmorStand);

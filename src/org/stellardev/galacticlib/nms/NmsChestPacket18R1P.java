@@ -26,6 +26,9 @@ public class NmsChestPacket18R1P extends NmsChestPacket {
     // ...(int, int, int)
     protected Constructor<?> constructorBlockPosition;
 
+    // net.minecraft.server.Block
+    protected Class<?> classBlock;
+
     // net.minecraft.server.Blocks
     protected Class<?> classBlocks;
     // ...#CHEST
@@ -46,13 +49,15 @@ public class NmsChestPacket18R1P extends NmsChestPacket {
         this.classBlockPosition = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("BlockPosition");
         this.constructorBlockPosition = ReflectionUtil.getConstructor(this.classBlockPosition, int.class, int.class, int.class);
 
+        this.classBlock = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("Block");
+
         this.classBlocks = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("Blocks");
         this.fieldBlocksChest = ReflectionUtil.getField(this.classBlocks, "CHEST");
         this.fieldBlocksEnderChest = ReflectionUtil.getField(this.classBlocks, "ENDER_CHEST");
         this.fieldBlocksTrappedChest = ReflectionUtil.getField(this.classBlocks, "TRAPPED_CHEST");
 
         this.classPacketPlayOutBlockAction = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("PacketPlayOutBlockAction");
-        this.constructorPacketPlayOutBlockAction = ReflectionUtil.getConstructor(this.classPacketPlayOutBlockAction, this.classBlockPosition, this.classBlocks, int.class, int.class);
+        this.constructorPacketPlayOutBlockAction = ReflectionUtil.getConstructor(this.classPacketPlayOutBlockAction, this.classBlockPosition, this.classBlock, int.class, int.class);
     }
 
     @Override
