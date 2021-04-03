@@ -1,24 +1,17 @@
 package org.stellardev.galacticlib.mixin;
 
-import com.massivecraft.massivecore.MassiveCoreMConf;
-import com.massivecraft.massivecore.engine.EngineMassiveCoreTeleportMixinCause;
-import com.massivecraft.massivecore.event.EventMassiveCorePlayerPSTeleport;
-import com.massivecraft.massivecore.mixin.*;
-import com.massivecraft.massivecore.ps.PS;
-import com.massivecraft.massivecore.teleport.Destination;
-import com.massivecraft.massivecore.teleport.ScheduledTeleport;
-import com.massivecraft.massivecore.util.IdUtil;
-import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivecore.mixin.Mixin;
+import com.massivecraft.massivecore.mixin.MixinMessage;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.permissions.Permissible;
-import org.bukkit.util.Vector;
+import org.stellardev.galacticlib.engine.EngineTeleport;
 import org.stellardev.galacticlib.entity.Conf;
-import org.stellardev.galacticlib.util.NumberUtil;
+import org.stellardev.galacticlib.task.TaskTeleportTimer;
+import org.stellardev.galacticlib.util.LibUtil;
 
 public class MixinTeleport extends Mixin {
+
     // -------------------------------------------- //
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
@@ -31,134 +24,53 @@ public class MixinTeleport extends Mixin {
     // METHODS
     // -------------------------------------------- //
 
-    public boolean isCausedByMixin(PlayerTeleportEvent event)
-    {
-        return EngineMassiveCoreTeleportMixinCause.get().isCausedByTeleportMixin(event);
+    public static void teleportPlayer(Player player, Location location) {
+        teleportPlayer(player, location, null);
     }
 
-    public void teleport(Object teleportee, Destination destination) throws TeleporterException
-    {
-        this.teleport(teleportee, destination, 0);
-    }
-
-    public void teleport(Object teleportee, Destination destination, Permissible delayPermissible) throws TeleporterException
-    {
-        int delaySeconds = MassiveCoreMConf.get().getTpdelay(delayPermissible);
-        this.teleport(teleportee, destination, delaySeconds);
-    }
-
-    // -------------------------------------------- //
-    // CORE LOGIC
-    // -------------------------------------------- //
-
-    public static void teleportPlayer(Player player, PS ps) throws TeleporterException
-    {
-        // Base the PS location on the entity location
-        ps = ps.getEntity(true);
-        ps = PS.valueOf(player.getLocation()).with(ps);
-
-        // Bukkit Location
-        Location location = null;
-        try
-        {
-            location = ps.asBukkitLocation();
-
-        }
-        catch (Exception e)
-        {
-            throw new TeleporterException(Txt.parse("<b>Could not calculate the location: %s", e.getMessage()));
-        }
-
+    public static void teleportPlayer(Player player, Location location, String locationDescription) {
         // eject passengers and unmount before transport
         player.eject();
         Entity vehicle = player.getVehicle();
+
         if (vehicle != null) vehicle.eject();
 
         // Do the teleport
-        EngineMassiveCoreTeleportMixinCause.get().setMixinCausedTeleportIncoming(true);
+        EngineTeleport.get().addUserToTeleportBlacklist(player);
         player.teleport(location);
-        EngineMassiveCoreTeleportMixinCause.get().setMixinCausedTeleportIncoming(false);
+        EngineTeleport.get().removeUserFromTeleportBlacklist(player);
 
-        // Bukkit velocity
-        Vector velocity = null;
-        try
-        {
-            velocity = ps.asBukkitVelocity();
+        if(locationDescription == null) {
+            MixinMessage.get().msgOne(player, Conf.get().msgTeleporting);
+        } else {
+            MixinMessage.get().msgOne(player, Conf.get().msgTeleportingNow, locationDescription);
         }
-        catch (Exception e)
-        {
+    }
+
+    public static void teleportPlayer(Player player, Location location, int delaySeconds) {
+        teleportPlayer(player, location, delaySeconds, null);
+    }
+
+    public static void teleportPlayer(Player player, Location location, int delaySeconds, String locationDescription) {
+        if(delaySeconds <= 0) {
+            teleportPlayer(player, location, locationDescription);
             return;
         }
 
-        player.setVelocity(velocity);
-    }
+        long timeInMillis = delaySeconds * 1000L;
 
-    // -------------------------------------------- //
-    // OVERRIDE
-    // -------------------------------------------- //
-
-    public void teleport(Object teleporteeObject, Destination destination, int delaySeconds) throws TeleporterException
-    {
-        String teleporteeId = IdUtil.getId(teleporteeObject);
-        if (!IdUtil.isPlayerId(teleporteeId)) throw new TeleporterException(Txt.parse("<white>%s <b>is not a player.", MixinDisplayName.get().getDisplayName(teleporteeId, IdUtil.getConsole())));
-
-        Player teleportee = IdUtil.getPlayer(teleporteeId);
-
-        PS ps;
-        try
-        {
-            ps = destination.getPs(teleporteeId);
-        }
-        catch (Exception e)
-        {
-            throw new TeleporterException(e.getMessage());
+        if(locationDescription == null) {
+            MixinMessage.get().msgOne(player, Conf.get().msgTeleportingDelayNoObject, LibUtil.getTimeDescription(timeInMillis));
+        } else {
+            MixinMessage.get().msgOne(player, Conf.get().msgTeleportingDelayObject, locationDescription, LibUtil.getTimeDescription(timeInMillis));
         }
 
-        if(teleportee != null && teleportee.isOp()) {
-            delaySeconds = 0;
-        }
-
-        String desc = destination.getDesc(teleporteeId);
-        if (delaySeconds > 0)
-        {
-            // With delay
-            if (desc != null && ! desc.isEmpty())
-            {
-                MixinMessage.get().msgOne(teleporteeId, Conf.get().msgTeleportingDelayObject, desc, NumberUtil.format(delaySeconds));
+        TaskTeleportTimer.get().addUserToMap(player.getUniqueId(), (System.currentTimeMillis() + timeInMillis), callback -> {
+            if(callback) {
+                teleportPlayer(player, location, locationDescription);
+            } else {
+                MixinMessage.get().msgOne(player, Conf.get().msgTeleportingCancelled);
             }
-            else
-            {
-                MixinMessage.get().msgOne(teleporteeId, Conf.get().msgTeleportingDelayNoObject, NumberUtil.format(delaySeconds));
-            }
-
-            new ScheduledTeleport(teleporteeId, destination, delaySeconds).schedule();
-        }
-        else
-        {
-            // Without delay AKA "now"/"at once"
-
-            // Run event
-            EventMassiveCorePlayerPSTeleport event = new EventMassiveCorePlayerPSTeleport(teleporteeId, MixinSenderPs.get().getSenderPs(teleporteeId), destination);
-            event.run();
-
-            if (event.isCancelled()) return;
-
-            destination = event.getDestination();
-            desc = destination.getDesc(teleporteeId);
-
-            if (desc != null && ! desc.isEmpty())
-            {
-                MixinMessage.get().msgOne(teleporteeId, Conf.get().msgTeleportingNow, desc);
-            }
-
-            if (teleportee != null)
-            {
-                teleportPlayer(teleportee, ps);
-            }
-            else
-            {
-                MixinSenderPs.get().setSenderPs(teleporteeId, ps);
-            }
-        }
+        });
     }
 }

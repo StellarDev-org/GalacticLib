@@ -22,6 +22,7 @@ import org.stellardev.galacticlib.provider.IDataHandlerProvider;
 import org.stellardev.galacticlib.provider.IShopHandlerProvider;
 import org.stellardev.galacticlib.provider.ISpawnerHandlerProvider;
 import org.stellardev.galacticlib.provider.ITokenHandlerProvider;
+import org.stellardev.galacticlib.task.TaskTeleportTimer;
 
 import java.util.logging.Level;
 
@@ -52,6 +53,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 EngineArmorEquip.class,
                 EngineGui.class,
                 EngineSpawnerPlace.class,
+                EngineTeleport.class,
 
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationGalacticShop.class,
@@ -73,7 +75,9 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 NmsPing.class,
                 NmsSkullTexture.class,
                 NmsTps.class,
-                NmsWorldBorder.class
+                NmsWorldBorder.class,
+
+                TaskTeleportTimer.class
         );
     }
 
