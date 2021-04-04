@@ -23,7 +23,7 @@ public class TaskTeleportTimer extends ModuloRepeatTask {
     @Override
     public void invoke(long l) {
         new HashMap<>(this.teleportUuidMap).entrySet().stream()
-                .filter(entry -> entry.getValue().getTimeMs() >= System.currentTimeMillis())
+                .filter(entry -> System.currentTimeMillis() >= entry.getValue().getTimeMs())
                 .forEach(entry -> {
                     entry.getValue().getCallback().call(true);
                     this.teleportUuidMap.remove(entry.getKey());
