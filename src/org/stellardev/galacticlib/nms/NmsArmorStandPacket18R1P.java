@@ -1,5 +1,6 @@
 package org.stellardev.galacticlib.nms;
 
+import com.massivecraft.massivecore.nms.NmsBasics;
 import com.massivecraft.massivecore.particleeffect.ReflectionUtils;
 import com.massivecraft.massivecore.util.ReflectionUtil;
 import org.bukkit.Location;
@@ -251,7 +252,7 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
         @Override
         public void spawnStand() {
             Object packetPlayOutSpawnEntityLiving = ReflectionUtil.invokeConstructor(constructorPacketPlayOutSpawnEntityLiving, this.entityArmorStand);
-            NmsPacket.get().sendPacket(this.player, packetPlayOutSpawnEntityLiving);
+            NmsBasics.get().sendPacket(this.player, packetPlayOutSpawnEntityLiving);
         }
 
         @Override
@@ -372,14 +373,14 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
             ReflectionUtil.invokeMethod(methodEntityArmorStandSetLocation, this.entityArmorStand, location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
 
             Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityTeleport, this.entityArmorStand);
-            NmsPacket.get().sendPacket(this.player, packet);
+            NmsBasics.get().sendPacket(this.player, packet);
         }
 
         @Override
         public void remove() {
             int[] id = {getId()};
             Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityDestroy, id);
-            NmsPacket.get().sendPacket(this.player, packet);
+            NmsBasics.get().sendPacket(this.player, packet);
 
             ReflectionUtil.invokeMethod(methodEntityArmorStandDie, this.entityArmorStand);
         }
@@ -406,7 +407,7 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
             Object dataWatcher = ReflectionUtil.invokeMethod(methodEntityArmorStandGetDataWatcher, this.entityArmorStand);
             Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityMetadata, getId(), dataWatcher, false);
 
-            NmsPacket.get().sendPacket(this.player, packet);
+            NmsBasics.get().sendPacket(this.player, packet);
         }
 
         @Override
@@ -416,7 +417,7 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
             Object dataWatcher = ReflectionUtil.invokeMethod(methodEntityArmorStandGetDataWatcher, this.entityArmorStand);
             Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityMetadata, getId(), dataWatcher, false);
 
-            NmsPacket.get().sendPacket(this.player, packet);
+            NmsBasics.get().sendPacket(this.player, packet);
         }
 
         @Override
@@ -437,7 +438,7 @@ public class NmsArmorStandPacket18R1P extends NmsArmorStandPacket {
             ReflectionUtil.invokeMethod(methodEntityArmorStandSetEquipment, this.entityArmorStand, slot, nmsItemStack);
 
             Object packet = ReflectionUtil.invokeConstructor(constructorPacketPlayOutEntityEquipment, getId(), slot, nmsItemStack);
-            NmsPacket.get().sendPacket(this.player, packet);
+            NmsBasics.get().sendPacket(this.player, packet);
         }
 
         private int getId() {

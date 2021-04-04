@@ -70,4 +70,6 @@ public class Conf extends Entity<Conf> {
     public int fortuneMaxDrops = 60;
     public double fortuneModifier = 0.005;
 
+    public boolean sendInventoryFullInActionBar = true;
+
 }

@@ -1,6 +1,7 @@
 package org.stellardev.galacticlib.util;
 
 import com.massivecraft.massivecore.mixin.MixinMessage;
+import com.massivecraft.massivecore.nms.NmsChat;
 import com.massivecraft.massivecore.util.InventoryUtil;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
@@ -40,7 +41,12 @@ public class InvUtil {
             if(!LibUtil.callEvent(new PlayerInventoryFullDropItemEvent(player, itemStack))) return;
 
             player.getWorld().dropItemNaturally(player.getLocation(), itemStack);
-            MixinMessage.get().msgOne(player, Conf.get().msgInventoryFull);
+
+            if(Conf.get().sendInventoryFullInActionBar) {
+                NmsChat.get().sendActionbarMsg(player, Conf.get().msgInventoryFull);
+            } else {
+                MixinMessage.get().msgOne(player, Conf.get().msgInventoryFull);
+            }
         } else {
             player.getInventory().addItem(itemStack);
         }

@@ -1,5 +1,6 @@
 package org.stellardev.galacticlib.nms;
 
+import com.massivecraft.massivecore.nms.NmsBasics;
 import com.massivecraft.massivecore.particleeffect.ReflectionUtils;
 import com.massivecraft.massivecore.util.ReflectionUtil;
 import org.bukkit.block.Block;
@@ -89,6 +90,6 @@ public class NmsChestPacket18R1P extends NmsChestPacket {
         }
 
         Object packet = ReflectionUtil.invokeConstructor(this.constructorPacketPlayOutBlockAction, blockPosition, blocks, 1, action);
-        NmsPacket.get().sendPacket(player, packet);
+        NmsBasics.get().sendPacket(player, packet);
     }
 }
