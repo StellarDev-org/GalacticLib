@@ -56,7 +56,15 @@ public class EngineLuckPerms extends Engine {
 
         if(user == null) return;
 
-        setPermission(user, permission, durationMs);
+        setPermission(user, permission, durationMs, true);
+    }
+
+    public void removePermission(OfflinePlayer offlinePlayer, String permission, Long durationMs) {
+        User user = getUser(offlinePlayer.getUniqueId());
+
+        if(user == null) return;
+
+        setPermission(user, permission, durationMs, false);
     }
 
     public String getPrefix(Player player) {
@@ -137,7 +145,7 @@ public class EngineLuckPerms extends Engine {
         return permissionData.checkPermission(permission).asBoolean();
     }
 
-    private void setPermission(User user, String permission, Long durationMs) {
+    private void setPermission(User user, String permission, Long durationMs, boolean add) {
         Node node;
 
         if(durationMs != null) {
@@ -146,7 +154,12 @@ public class EngineLuckPerms extends Engine {
             node = Node.builder(permission).build();
         }
 
-        user.getData(DataType.NORMAL).add(node);
+        if(add) {
+            user.getData(DataType.NORMAL).add(node);
+        } else {
+            user.getData(DataType.NORMAL).remove(node);
+        }
+
         this.luckPermsApi.getUserManager().saveUser(user);
     }
 

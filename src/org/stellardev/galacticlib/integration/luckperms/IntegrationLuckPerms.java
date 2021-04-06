@@ -37,6 +37,14 @@ public class IntegrationLuckPerms extends Integration {
         EngineLuckPerms.get().givePermission(offlinePlayer, permission, durationMs);
     }
 
+    public void removePermission(OfflinePlayer offlinePlayer, String permission) {
+        EngineLuckPerms.get().removePermission(offlinePlayer, permission, null);
+    }
+
+    public void removePermission(OfflinePlayer offlinePlayer, String permission, Long durationMs) {
+        EngineLuckPerms.get().removePermission(offlinePlayer, permission, durationMs);
+    }
+
     public String getRankPrefix(Player player) {
         return EngineLuckPerms.get().getRankPrefix(player);
     }
