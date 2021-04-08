@@ -44,7 +44,7 @@ public class CooldownCache {
             return true;
         } else {
             if(this.sendMessage) {
-                MixinMessage.get().msgOne(player, getCooldownMessage(), Txt.getTimeDeltaDescriptionRelNow(expireMs));
+                MixinMessage.get().msgOne(player, getCooldownMessage(), Txt.getTimeDeltaDescriptionRelNow(expireMs - currentMs));
             }
 
             return false;
