@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.stellardev.galacticlib.engine.EngineTeleport;
 import org.stellardev.galacticlib.entity.Conf;
+import org.stellardev.galacticlib.event.PlayerTeleportLibEvent;
 import org.stellardev.galacticlib.task.TaskTeleportTimer;
 import org.stellardev.galacticlib.util.LibUtil;
 
@@ -36,8 +37,14 @@ public class MixinTeleport extends Mixin {
         if (vehicle != null) vehicle.eject();
 
         // Do the teleport
+
         EngineTeleport.get().addUserToTeleportBlacklist(player);
+
+        PlayerTeleportLibEvent event = new PlayerTeleportLibEvent(player, location);
+
+        LibUtil.callEvent(event);
         player.teleport(location);
+
         EngineTeleport.get().removeUserFromTeleportBlacklist(player);
 
         if(locationDescription == null) {

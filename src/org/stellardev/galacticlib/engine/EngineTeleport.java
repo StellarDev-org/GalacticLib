@@ -33,54 +33,72 @@ public class EngineTeleport extends Engine {
         this.teleportBlacklistUuid.remove(player.getUniqueId());
     }
 
+    public boolean isUserBlacklistedFromTeleport(Player player) {
+        return this.teleportBlacklistUuid.contains(player.getUniqueId());
+    }
+
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onTeleport(PlayerTeleportEvent event) {
-        if(MUtil.isntPlayer(event.getPlayer())) return;
-        if(this.teleportBlacklistUuid.contains(event.getPlayer().getUniqueId())) return;
+        Player player = event.getPlayer();
 
-        cancelTeleport(event.getPlayer());
+        if(MUtil.isntPlayer(player)) return;
+        if(isUserBlacklistedFromTeleport(player)) return;
+
+        cancelTeleport(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onMove(PlayerMoveEvent event) {
         if(MUtil.isSameBlock(event)) return;
 
-        cancelTeleport(event.getPlayer());
+        Player player = event.getPlayer();
+
+        cancelTeleport(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onDamage(EntityDamageEvent event) {
         if(MUtil.isntPlayer(event.getEntity())) return;
 
-        cancelTeleport((Player) event.getEntity());
+        Player player = (Player) event.getEntity();
+
+        cancelTeleport(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onDeath(PlayerDeathEvent event) {
-        if(MUtil.isntPlayer(event.getEntity())) return;
+        Player player = event.getEntity();
 
-        cancelTeleport(event.getEntity());
+        if(MUtil.isntPlayer(player)) return;
+
+        cancelTeleport(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onLeave(PlayerQuitEvent event) {
-        if(MUtil.isntPlayer(event.getPlayer())) return;
+        Player player = event.getPlayer();
 
-        cancelTeleport(event.getPlayer());
+        if(MUtil.isntPlayer(player)) return;
+
+        cancelTeleport(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onInventoryOpen(InventoryOpenEvent event) {
         if(MUtil.isntPlayer(event.getPlayer())) return;
 
-        cancelTeleport((Player) event.getPlayer());
+        Player player = (Player) event.getPlayer();
+
+        cancelTeleport(player);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     protected void onInventoryClick(InventoryClickEvent event) {
         if(MUtil.isntPlayer(event.getWhoClicked())) return;
 
-        cancelTeleport((Player) event.getWhoClicked());
+        Player player = (Player) event.getWhoClicked();
+
+        cancelTeleport(player);
     }
 
     private void cancelTeleport(Player player) {
