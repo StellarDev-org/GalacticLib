@@ -17,6 +17,8 @@ public class Conf extends Entity<Conf> {
     public String msgInvalidBoolean = "&e&lGalacticLib &8» &cThe boolean you have entered is invalid. Please use either &ftrue&c or &ffalse&c.";
     public String msgEnabledDisplay = "&aenabled";
     public String msgDisabledDisplay = "&cdisabled";
+    public String msgTrueDisplay = "&atrue";
+    public String msgFalseDisplay = "&cfalse";
 
     public String msgInvalidTime = "&e&lGalacticLib &8» &cThe time format you have provided is invalid. Please use &f1&c, &f1s&c, &f1m&c or &f1h&c.";
     public String msgInvalidMaterial = "&e&lGalacticLib &8» &cThe inputted material is invalid. Please try something like &fDirt&c, &f3&c, &f3:0&c, or &fDirt:0&c.";
