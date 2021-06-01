@@ -74,4 +74,6 @@ public class Conf extends Entity<Conf> {
 
     public boolean sendInventoryFullInActionBar = true;
 
+    public String spawnCommand = "spawn %s";
+
 }
