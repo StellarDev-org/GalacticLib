@@ -202,6 +202,42 @@ public class TxtUtil {
                     presetDisplay = "Raw Fish";
                     break;
             }
+        } else if(itemStack.getType() == Material.RED_ROSE) {
+            short durability = itemStack.getDurability();
+
+            switch (durability) {
+                case 0:
+                    presetDisplay = "Poppy";
+                    break;
+                case 1:
+                    presetDisplay = "Blue Orchid";
+                    break;
+                case 2:
+                    presetDisplay = "Allium";
+                    break;
+                case 3:
+                    presetDisplay = "Azure Bluet";
+                    break;
+                case 4:
+                    presetDisplay = "Red Tulip";
+                    break;
+                case 5:
+                    presetDisplay = "Orange Tulip";
+                    break;
+                case 6:
+                    presetDisplay = "White Tulip";
+                    break;
+                case 7:
+                    presetDisplay = "Pink Tulip";
+                    break;
+                case 8:
+                    presetDisplay = "Oxeye Daisy";
+                    break;
+            }
+        } else if(itemStack.getType() == Material.CARROT_ITEM) {
+            presetDisplay = "Carrot";
+        } else if(itemStack.getType() == Material.POTATO_ITEM) {
+            presetDisplay = "Potato";
         }
 
         return color + (presetDisplay != null? presetDisplay : Txt.getMaterialName(itemStack.getType()));

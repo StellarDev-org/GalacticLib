@@ -99,8 +99,6 @@ public class LibUtil {
             return itemName;
         } catch (Exception var9) {
             return itemName;
-        } finally {
-            ;
         }
     }
 
