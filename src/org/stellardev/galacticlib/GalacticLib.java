@@ -50,6 +50,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
         this.activate(
                 ConfColl.class,
 
+                EngineAnvil.class,
                 EngineArmorEquip.class,
                 EngineGui.class,
                 EngineSpawnerPlace.class,
