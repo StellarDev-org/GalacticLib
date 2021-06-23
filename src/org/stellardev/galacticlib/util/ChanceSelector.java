@@ -34,7 +34,7 @@ public class ChanceSelector<T> {
     }
 
     public T getRandomElement() {
-        checkArgument(this.total == 0, "there's no values currently added.");
+        checkArgument(this.total != 0.0, "there's no values currently added.");
 
         double value = ThreadLocalRandom.current().nextDouble() * (this.outOfHundred? 100 : this.total);
 
