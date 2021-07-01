@@ -1,10 +1,12 @@
 package org.stellardev.galacticlib.util;
 
+import com.google.common.util.concurrent.AtomicDouble;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Function;
 import java.util.function.ToDoubleFunction;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -12,10 +14,8 @@ import static java.util.Objects.requireNonNull;
 
 public class ChanceSelector<T> {
 
-    private final NavigableMap<Double, T> map = new TreeMap<>();
+    private final Map<T, ToDoubleFunction<? super T>> objectMap = new HashMap<>();
     private final boolean outOfHundred;
-
-    private double total = 0;
 
     public ChanceSelector(boolean outOfHundred) {
         this.outOfHundred = outOfHundred;
@@ -29,18 +29,33 @@ public class ChanceSelector<T> {
 
         checkArgument(selectionChance > 0d, "selectionChance returned a negative number");
 
-        this.total += selectionChance;
-        this.map.put(this.total, element);
+        this.objectMap.put(element, chance);
     }
 
     public T getRandomElement() {
-        checkArgument(this.total != 0.0, "there's no values currently added.");
+        return getRandomElement(0.0);
+    }
 
-        double value = ThreadLocalRandom.current().nextDouble() * (this.outOfHundred? 100 : this.total);
+    public T getRandomElement(double extraChance) {
+        checkArgument(extraChance >= 0.0, "the extra chance cannot be less than 0.");
 
-        if(value > this.total) return null;
+        NavigableMap<Double, T> navigableMap = new TreeMap<>();
+        AtomicDouble tempTotal = new AtomicDouble(0.0);
 
-        Map.Entry<Double, T> entry = this.map.ceilingEntry(value);
+        this.objectMap.forEach((element, chance) -> {
+            double chanceTotal = chance.applyAsDouble(element) + extraChance;
+
+            navigableMap.put(chanceTotal, element);
+            tempTotal.getAndAdd(chanceTotal);
+        });
+
+        double totalChance = tempTotal.get();
+        double randomValue = ThreadLocalRandom.current().nextDouble();
+        double value = randomValue * (this.outOfHundred? 100 : totalChance);
+
+        if(value > totalChance) return null;
+
+        Map.Entry<Double, T> entry = navigableMap.ceilingEntry(value);
 
         return entry == null? null : entry.getValue();
     }
