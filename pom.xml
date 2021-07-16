@@ -118,31 +118,19 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>21.0.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
             <groupId>com.massivecraft.massivecore</groupId>
             <artifactId>MassiveCore</artifactId>
-            <version>2.14.1-SNAPSHOT</version>
-        </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>2.10.9</version>
-        </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>com.boydti</groupId>
-            <artifactId>fawe-api</artifactId>
-            <version>19.11.13-5505943-1282-22.3.5</version>
-        </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-core</artifactId>
-            <version>6.1.4-SNAPSHOT</version>
+            <version>2.17.0-SNAPSHOT</version>
+            <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
@@ -151,9 +139,52 @@
             </exclusions>
         </dependency>
         <dependency> <!-- PROVIDED -->
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.10.9</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.boydti</groupId>
+            <artifactId>fawe-api</artifactId>
+            <version>19.11.13-5505943-1282-22.3.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-core</artifactId>
+            <version>6.1.4-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
             <version>6.1.4-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldguard</artifactId>
+            <version>6.1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!-- NOT PROVIDED -->
+            <groupId>com.plotsquared</groupId>
+            <artifactId>plotsquared-bukkitapi</artifactId>
+            <version>3.1</version>
+            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
@@ -163,30 +194,39 @@
         </dependency>
         <dependency> <!-- NOT PROVIDED -->
             <groupId>com.plotsquared</groupId>
-            <artifactId>PlotSquared</artifactId>
-            <version>3.815</version>
+            <artifactId>plotsquared-api</artifactId>
+            <version>3.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
             <groupId>com.gmail.filoghost.holographicdisplays</groupId>
             <artifactId>holographicdisplays-api</artifactId>
             <version>2.4.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
-            <groupId>me.lucko.luckperms</groupId>
-            <artifactId>LuckPerms</artifactId>
-            <version>5.1.15</version>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
-            <groupId>de.dustplanet.silkspawners</groupId>
-            <artifactId>SilkSpawners</artifactId>
-            <version>6.0.1</version>
+            <groupId>de.dustplanet</groupId>
+            <artifactId>silkspawners</artifactId>
+            <version>6.2.0</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency> <!-- PROVIDED -->
             <groupId>com.github.brcdev-minecraft</groupId>
             <artifactId>shopgui-api</artifactId>
             <version>2.1.1</version>
+            <scope>compile</scope>
         </dependency>
         <dependency> <!-- PROVIDED -->
             <groupId>com.bgsoftware</groupId>
@@ -219,19 +259,22 @@
         <repository>
             <id>codemc-repo</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
-            <layout>default</layout>
         </repository>
         <repository>
             <id>fawe-repo</id>
-            <url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+            <url>https://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
+            <id>spigot-repo2</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
             <id>placeholderapi-repo</id>
-            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
             <id>jitpack.io</id>
@@ -240,6 +283,24 @@
         <repository>
             <id>bg-repo</id>
             <url>https://repo.bg-software.com/repository/api/</url>
+        </repository>
+        <!-- WorldEdit -->
+        <repository>
+            <id>enginehub</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+        <repository>
+            <id>OSS Sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+        <!-- PlotSquared -->
+        <repository>
+            <id>plotsquared</id>
+            <url>https://plotsquared.com/mvn/</url>
+        </repository>
+        <repository>
+            <id>SilkSpawners-Repo</id>
+            <url>https://repo.dustplanet.de/artifactory/libs-release-local</url>
         </repository>
     </repositories>
 </project>
