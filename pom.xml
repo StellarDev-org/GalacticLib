@@ -74,7 +74,8 @@
                         <phase>install</phase>
                         <configuration>
                             <target>
-                                <copy file="target\${build.finalName}.jar" tofile="..\..\..\aaPlugins\GalacticSeries\${build.finalName}.jar"/>
+                                <copy file="target\${build.finalName}.jar" tofile="..\..\..\aaPlugins\GalacticSeries\${build.finalName}_${version}.jar"/>
+                                <copy file="target\${build.finalName}.jar" tofile="C:\Users\Admin\Downloads\Jar Exports\${build.finalName}_${version}.jar"/>
                             </target>
                         </configuration>
                         <goals>
