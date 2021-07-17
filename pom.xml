@@ -6,7 +6,7 @@
 
     <groupId>org.stellardev.galactic</groupId>
     <artifactId>GalacticLib</artifactId>
-    <version>1.19.14</version>
+    <version>1.19.15</version>
     <packaging>jar</packaging>
 
     <build>
