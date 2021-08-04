@@ -9,6 +9,13 @@
     <version>1.19.15</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <plugin.name>galacticlib</plugin.name>
+        <plugin.package>org.stellardev.${plugin.name}</plugin.package>
+        <plugin.main>${plugin.package}.${project.artifactId}</plugin.main>
+        <plugin.path>org/stellardev/${plugin.name}/</plugin.path>
+    </properties>
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <defaultGoal>clean package install</defaultGoal>
