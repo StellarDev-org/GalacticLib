@@ -31,6 +31,11 @@ public class EngineGalacticSkyBlock extends Engine implements IDataHandler {
     }
 
     @Override
+    public String getEntityHandler(Player player) {
+        return SkyBlockAPI.getIslandId(player.getUniqueId().toString());
+    }
+
+    @Override
     public boolean canAccess(Player player, Location location) {
         return SkyBlockAPI.canAccess(player, location);
     }

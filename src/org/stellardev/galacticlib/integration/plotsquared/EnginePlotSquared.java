@@ -52,6 +52,15 @@ public class EnginePlotSquared extends Engine implements IDataHandler {
     }
 
     @Override
+    public String getEntityHandler(Player player) {
+        Plot plot = plotAPI.getPlot(player);
+
+        if(plot == null) return null;
+
+        return plot.getId().toString();
+    }
+
+    @Override
     public boolean canAccess(Player player, Location location) {
         Plot plot = getPlotLocation(location).getPlot();
 

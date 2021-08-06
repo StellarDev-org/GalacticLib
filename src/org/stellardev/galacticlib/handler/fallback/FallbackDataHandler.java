@@ -28,6 +28,11 @@ public class FallbackDataHandler implements IDataHandler {
     }
 
     @Override
+    public String getEntityHandler(Player player) {
+        return player.getUniqueId().toString();
+    }
+
+    @Override
     public boolean canAccess(Player player, Location location) {
         return true;
     }

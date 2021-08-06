@@ -12,6 +12,8 @@ public interface IDataHandler {
     String getEntityHandler(Location location);
 
     String getEntityHandler(String input);
+    
+    String getEntityHandler(Player player);
 
     boolean canAccess(Player player, Location location);
 

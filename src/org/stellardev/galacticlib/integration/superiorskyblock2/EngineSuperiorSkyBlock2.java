@@ -47,6 +47,13 @@ public class EngineSuperiorSkyBlock2 extends Engine implements IDataHandler {
     }
 
     @Override
+    public String getEntityHandler(Player player) {
+        Island island = SuperiorSkyblockAPI.getIslandByUUID(player.getUniqueId());
+
+        return island == null? null : island.getOwner().getUniqueId().toString();
+    }
+
+    @Override
     public boolean canAccess(Player player, Location location) {
         Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
