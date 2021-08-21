@@ -34,7 +34,7 @@ public class Conf extends Entity<Conf> {
 
     public String msgTeleportingCancelled = "&e&lGalacticLib &8» &cYour teleportation was cancelled.";
     public String msgTeleportingDelayObject = "&e&lGalacticLib &8» &aTeleporting to &f%s&a in &f%ss&a unless you move.";
-    public String msgTeleportingDelayNoObject = "&e&lGalacticLib &8» &aTeleporting in &f%ss&a unless you move.";
+    public String msgTeleportingDelayNoObject = "&e&lGalacticLib &8» &aTeleporting in &f%s&a unless you move.";
     public String msgTeleportingNow = "&e&lGalacticLib &8» &aYou have just teleported to &f%s&a.";
     public String msgTeleporting = "&e&lGalacticLib &8» &aYou have just teleported.";
 
