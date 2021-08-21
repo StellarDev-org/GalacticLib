@@ -242,6 +242,12 @@
             <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>com.massivecraft</groupId>
+            <artifactId>Factions</artifactId>
+            <version>1.6.9.5-U0.5.23</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency> <!-- PROVIDED -->
             <groupId>org.stellardev.galactic</groupId>
@@ -309,6 +315,11 @@
         <repository>
             <id>SilkSpawners-Repo</id>
             <url>https://repo.dustplanet.de/artifactory/libs-release-local</url>
+        </repository>
+        <!-- FactionsUUID -->
+        <repository>
+            <id>EnderZone</id>
+            <url>https://ci.ender.zone/plugin/repository/everything/</url>
         </repository>
     </repositories>
 </project>

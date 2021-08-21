@@ -5,6 +5,7 @@ import org.stellardev.galacticlib.coll.*;
 import org.stellardev.galacticlib.engine.*;
 import org.stellardev.galacticlib.handler.*;
 import org.stellardev.galacticlib.handler.fallback.*;
+import org.stellardev.galacticlib.integration.factionsuuid.IntegrationFactionsUUID;
 import org.stellardev.galacticlib.integration.fastasyncworldedit.*;
 import org.stellardev.galacticlib.integration.galacticshop.IntegrationGalacticShop;
 import org.stellardev.galacticlib.integration.galacticskyblock.IntegrationGalacticSkyBlock;
@@ -56,6 +57,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 EngineSpawnerPlace.class,
                 EngineTeleport.class,
 
+                IntegrationFactionsUUID.class,
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationGalacticShop.class,
                 IntegrationGalacticSkyBlock.class,
