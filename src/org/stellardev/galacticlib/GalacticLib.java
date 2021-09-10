@@ -5,6 +5,7 @@ import org.stellardev.galacticlib.coll.*;
 import org.stellardev.galacticlib.engine.*;
 import org.stellardev.galacticlib.handler.*;
 import org.stellardev.galacticlib.handler.fallback.*;
+import org.stellardev.galacticlib.integration.aquacore.IntegrationAquaCore;
 import org.stellardev.galacticlib.integration.factionsuuid.IntegrationFactionsUUID;
 import org.stellardev.galacticlib.integration.fastasyncworldedit.*;
 import org.stellardev.galacticlib.integration.galacticshop.IntegrationGalacticShop;
@@ -19,15 +20,12 @@ import org.stellardev.galacticlib.integration.worldedit.*;
 import org.stellardev.galacticlib.mixin.MixinInventory;
 import org.stellardev.galacticlib.mixin.MixinTeleport;
 import org.stellardev.galacticlib.nms.*;
-import org.stellardev.galacticlib.provider.IDataHandlerProvider;
-import org.stellardev.galacticlib.provider.IShopHandlerProvider;
-import org.stellardev.galacticlib.provider.ISpawnerHandlerProvider;
-import org.stellardev.galacticlib.provider.ITokenHandlerProvider;
+import org.stellardev.galacticlib.provider.*;
 import org.stellardev.galacticlib.task.TaskTeleportTimer;
 
 import java.util.logging.Level;
 
-public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, IShopHandlerProvider, ITokenHandlerProvider, ISpawnerHandlerProvider {
+public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, IShopHandlerProvider, ITokenHandlerProvider, ISpawnerHandlerProvider, IPermissionHandlerProvider {
 
     private static GalacticLib i;
     public static GalacticLib get() { return i; }
@@ -40,11 +38,13 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
     private final ITokenHandler fallbackTokenHandler = new FallbackTokenHandler();
     private final IDataHandler fallbackDataHandler = new FallbackDataHandler();
     private final IShopHandler fallbackShopHandler = new FallbackShopHandler();
+    private final IPermissionHandler fallbackPermissionHandler = new FallbackPermissionHandler();
 
     private ISpawnerHandler spawnerHandler;
     private ITokenHandler tokenHandler;
     private IDataHandler dataHandler;
     private IShopHandler shopHandler;
+    private IPermissionHandler permissionHandler;
 
     @Override
     public void onEnableInner() {
@@ -57,6 +57,7 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
                 EngineSpawnerPlace.class,
                 EngineTeleport.class,
 
+                IntegrationAquaCore.class,
                 IntegrationFactionsUUID.class,
                 IntegrationFastAsyncWorldEdit.class,
                 IntegrationGalacticShop.class,
@@ -91,6 +92,8 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
     public ITokenHandler getTokenHandler() { return this.tokenHandler == null? this.fallbackTokenHandler : this.tokenHandler; }
     @Override
     public ISpawnerHandler getSpawnerHandler() { return this.spawnerHandler == null? this.fallbackSpawnerHandler : this.spawnerHandler; }
+    @Override
+    public IPermissionHandler getPermissionHandler() { return this.permissionHandler == null? this.fallbackPermissionHandler : this.permissionHandler; }
 
     public void registerShopHandler(IShopHandler shopHandler) {
         if(this.shopHandler != null) {
@@ -121,12 +124,21 @@ public class GalacticLib extends MassivePlugin implements IDataHandlerProvider, 
     }
     public void registerSpawnerHandler(ISpawnerHandler spawnerHandler) {
         if(this.spawnerHandler != null) {
-            GalacticLib.get().log(Level.SEVERE, "An issue occurred when registering the new spawner handler '" + spawnerHandler.getClass().getSimpleName() + "', as a token handler is already set.");
+            GalacticLib.get().log(Level.SEVERE, "An issue occurred when registering the new spawner handler '" + spawnerHandler.getClass().getSimpleName() + "', as a spawner handler is already set.");
             return;
         }
 
         GalacticLib.get().log("Spawner handler has now been set to " + spawnerHandler.getClass().getSimpleName() + ".");
         this.spawnerHandler = spawnerHandler;
+    }
+    public void registerPermissionHandler(IPermissionHandler permissionHandler) {
+        if(this.permissionHandler != null) {
+            GalacticLib.get().log(Level.SEVERE, "An issue occurred when registering the new spawner handler '" + permissionHandler.getClass().getSimpleName() + "', as a permission handler is already set.");
+            return;
+        }
+
+        GalacticLib.get().log("Permission handler has now been set to " + permissionHandler.getClass().getSimpleName() + ".");
+        this.permissionHandler = permissionHandler;
     }
 
 }

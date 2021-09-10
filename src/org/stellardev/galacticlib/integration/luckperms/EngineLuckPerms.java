@@ -14,13 +14,14 @@ import net.luckperms.api.node.Node;
 import net.luckperms.api.query.QueryOptions;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.stellardev.galacticlib.handler.IPermissionHandler;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-public class EngineLuckPerms extends Engine {
+public class EngineLuckPerms extends Engine implements IPermissionHandler {
 
     private static final EngineLuckPerms instance = new EngineLuckPerms();
     public static EngineLuckPerms get() { return instance; }
@@ -31,6 +32,7 @@ public class EngineLuckPerms extends Engine {
         this.luckPermsApi = LuckPermsProvider.get();
     }
 
+    @Override
     public int getPermissionPoolTop(UUID uuid, String permissionBase, int cap) {
         User user = getUser(uuid);
 
@@ -43,6 +45,7 @@ public class EngineLuckPerms extends Engine {
         return -1;
     }
 
+    @Override
     public boolean hasPermission(OfflinePlayer offlinePlayer, String permission) {
         User user = getUser(offlinePlayer.getUniqueId());
 
@@ -51,6 +54,16 @@ public class EngineLuckPerms extends Engine {
         return hasPermission(user, permission);
     }
 
+    @Override
+    public void givePermission(OfflinePlayer offlinePlayer, String permission) {
+        User user = getUser(offlinePlayer.getUniqueId());
+
+        if(user == null) return;
+
+        setPermission(user, permission, null, true);
+    }
+
+    @Override
     public void givePermission(OfflinePlayer offlinePlayer, String permission, Long durationMs) {
         User user = getUser(offlinePlayer.getUniqueId());
 
@@ -59,6 +72,16 @@ public class EngineLuckPerms extends Engine {
         setPermission(user, permission, durationMs, true);
     }
 
+    @Override
+    public void removePermission(OfflinePlayer offlinePlayer, String permission) {
+        User user = getUser(offlinePlayer.getUniqueId());
+
+        if(user == null) return;
+
+        setPermission(user, permission, null, false);
+    }
+
+    @Override
     public void removePermission(OfflinePlayer offlinePlayer, String permission, Long durationMs) {
         User user = getUser(offlinePlayer.getUniqueId());
 
@@ -67,6 +90,7 @@ public class EngineLuckPerms extends Engine {
         setPermission(user, permission, durationMs, false);
     }
 
+    @Override
     public String getPrefix(Player player) {
         User user = getUser(player.getUniqueId());
 
@@ -83,6 +107,7 @@ public class EngineLuckPerms extends Engine {
         return user.getCachedData().getMetaData(QueryOptions.contextual(contexts)).getPrefix();
     }
 
+    @Override
     public String getSuffix(Player player) {
         User user = getUser(player.getUniqueId());
 
@@ -99,6 +124,7 @@ public class EngineLuckPerms extends Engine {
         return user.getCachedData().getMetaData(QueryOptions.contextual(contexts)).getSuffix();
     }
 
+    @Override
     public String getRankPrefix(Player player) {
         User user = getUser(player.getUniqueId());
 
@@ -134,11 +160,7 @@ public class EngineLuckPerms extends Engine {
         ContextManager contextManager = this.luckPermsApi.getContextManager();
 
         ImmutableContextSet staticContexts = contextManager.getStaticContext();
-        ImmutableContextSet contexts = contextManager.getContext(user).orElse(null);
-
-        if(contexts == null) {
-            contexts = staticContexts;
-        }
+        ImmutableContextSet contexts = contextManager.getContext(user).orElse(staticContexts);
 
         CachedPermissionData permissionData = user.getCachedData().getPermissionData(QueryOptions.contextual(contexts));
 

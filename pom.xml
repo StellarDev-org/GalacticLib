@@ -248,6 +248,12 @@
             <version>1.6.9.5-U0.5.23</version>
             <scope>provided</scope>
         </dependency>
+        <dependency> <!-- PROVIDED -->
+            <groupId>me.activated</groupId>
+            <artifactId>AquaCoreAPI</artifactId>
+            <version>2.6.15</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency> <!-- PROVIDED -->
             <groupId>org.stellardev.galactic</groupId>

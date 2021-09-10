@@ -1,4 +1,4 @@
-package org.stellardev.galacticlib.integration.luckperms;
+package org.stellardev.galacticlib.integration.aquacore;
 
 import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivecore.Integration;
@@ -6,23 +6,23 @@ import org.stellardev.galacticlib.GalacticLib;
 import org.stellardev.galacticlib.handler.IPermissionHandler;
 import org.stellardev.galacticlib.provider.IPermissionHandlerProvider;
 
-public class IntegrationLuckPerms extends Integration implements IPermissionHandlerProvider {
+public class IntegrationAquaCore extends Integration implements IPermissionHandlerProvider {
 
-    private static final IntegrationLuckPerms instance = new IntegrationLuckPerms();
-    public static IntegrationLuckPerms get() { return instance; }
+    private static final IntegrationAquaCore instance = new IntegrationAquaCore();
+    public static IntegrationAquaCore get() { return instance; }
 
-    private IntegrationLuckPerms() {
-        this.setPluginName("LuckPerms");
+    private IntegrationAquaCore() {
+        this.setPluginName("AquaCore");
     }
 
     @Override
     public Engine getEngine() {
-        return EngineLuckPerms.get();
+        return EngineAquaCore.get();
     }
 
     @Override
     public IPermissionHandler getPermissionHandler() {
-        return EngineLuckPerms.get();
+        return EngineAquaCore.get();
     }
 
     @Override
