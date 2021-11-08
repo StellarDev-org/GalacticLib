@@ -9,7 +9,7 @@ import org.bukkit.inventory.InventoryHolder;
 public class MixinInventory extends Mixin {
 
     private static final MixinInventory d = new MixinInventory();
-    private static final MixinInventory i = d;
+    private static MixinInventory i = d;
     public static MixinInventory get() { return i; }
 
     public Inventory createInventory(InventoryHolder inventoryHolder, InventoryType inventoryType, String title) {

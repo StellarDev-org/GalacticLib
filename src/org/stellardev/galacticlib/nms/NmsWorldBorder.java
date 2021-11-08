@@ -18,7 +18,7 @@ public class NmsWorldBorder extends Mixin {
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static final NmsWorldBorder i = d;
+    private static NmsWorldBorder i = d;
     public static NmsWorldBorder get() { return i; }
 
     // -------------------------------------------- //

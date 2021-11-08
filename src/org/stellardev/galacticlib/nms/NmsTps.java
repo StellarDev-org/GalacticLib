@@ -16,7 +16,7 @@ public class NmsTps extends Mixin {
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static final NmsTps i = d;
+    private static NmsTps i = d;
     public static NmsTps get() { return i; }
 
     // -------------------------------------------- //

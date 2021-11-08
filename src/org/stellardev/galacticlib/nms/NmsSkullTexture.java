@@ -23,7 +23,7 @@ public class NmsSkullTexture extends Mixin {
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static final NmsSkullTexture i = d;
+    private static NmsSkullTexture i = d;
     public static NmsSkullTexture get() { return i; }
 
     // -------------------------------------------- //

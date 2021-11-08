@@ -17,7 +17,7 @@ public class NmsPing extends Mixin {
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static final NmsPing i = d;
+    private static NmsPing i = d;
     public static NmsPing get() { return i; }
 
     // -------------------------------------------- //

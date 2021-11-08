@@ -18,7 +18,7 @@ public class NmsChestPacket extends Mixin {
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    private static final NmsChestPacket i = d;
+    private static NmsChestPacket i = d;
     public static NmsChestPacket get() { return i; }
 
     // -------------------------------------------- //

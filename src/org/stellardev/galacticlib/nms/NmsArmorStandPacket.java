@@ -27,7 +27,7 @@ public class NmsArmorStandPacket extends Mixin {
     // INSTANCE & CONSTRUCT
     // -------------------------------------------- //
 
-    public static final NmsArmorStandPacket i = d;
+    public static NmsArmorStandPacket i = d;
     public static NmsArmorStandPacket get() { return i; }
 
     // -------------------------------------------- //

@@ -18,7 +18,7 @@ public class MixinTeleport extends Mixin {
     // -------------------------------------------- //
 
     private final static MixinTeleport d = new MixinTeleport();
-    private final static MixinTeleport i = d;
+    private static MixinTeleport i = d;
     public static MixinTeleport get() { return i; }
 
     // -------------------------------------------- //
