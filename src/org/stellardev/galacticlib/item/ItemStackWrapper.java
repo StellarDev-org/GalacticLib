@@ -239,7 +239,7 @@ public class ItemStackWrapper {
             if(itemMeta.hasLore()) metaWrapper.setLore(itemMeta.getLore());
             if(itemMeta.hasEnchants()) itemMeta.getEnchants().forEach((enchant, level) -> metaWrapper.addEnchant(enchant.getName(), level));
             if(!itemMeta.getItemFlags().isEmpty()) metaWrapper.setItemFlags(itemMeta.getItemFlags());
-            if(itemMeta.spigot().isUnbreakable()) metaWrapper.setUnbreakable(true);
+            if(itemMeta.isUnbreakable()) metaWrapper.setUnbreakable(true);
 
             if(itemMeta instanceof SkullMeta) {
                 SkullWrapper skullWrapper = new SkullWrapper();

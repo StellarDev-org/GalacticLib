@@ -25,7 +25,7 @@ public class EngineSpawnerPlace extends Engine {
         Block block = event.getBlock();
         Block clickedBlock = event.getBlockAgainst();
 
-        if(block.getType() != Material.MOB_SPAWNER) return;
+        if(block.getType() != Material.SPAWNER) return;
 
         CreatureSpawner creatureSpawner = (CreatureSpawner) block.getState();
         EntityType entityType = creatureSpawner.getSpawnedType();

@@ -31,7 +31,7 @@ public class SkullUtil {
             EntityType.MUSHROOM_COW, "eyJ0aW1lc3RhbXAiOjE1NTM1NjgzMjY4NDMsInByb2ZpbGVJZCI6ImE0NjgxN2Q2NzNjNTRmM2ZiNzEyYWY2YjNmZjQ3Yjk2IiwicHJvZmlsZU5hbWUiOiJNSEZfTXVzaHJvb21Db3ciLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTIzY2ZjNTU4MjQ1NGZjZjk5MDZmODQxZmRhMmNjNmFlODk2Y2Y0NTU4MjFjNGFkYTE5OThkZTcwODc3Y2M4NiJ9fX0=",
             EntityType.OCELOT, "eyJ0aW1lc3RhbXAiOjE1NTM1NjgzNDMyNjEsInByb2ZpbGVJZCI6IjFiZWU5ZGY1NGY3MTQyYTJiZjUyZDk3OTcwZDNmZWEzIiwicHJvZmlsZU5hbWUiOiJNSEZfT2NlbG90IiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzExOGI2Yjc5NzgzMzY4ZGZlMDA0Mjk4NTExMGRhMzY2ZjljNzg4YjQ1MDk3YTNlYTZkMGQ5YTc1M2U5ZjQyYzYifX19",
             EntityType.PIG, "eyJ0aW1lc3RhbXAiOjE1NTM1NjgzNTc5NTcsInByb2ZpbGVJZCI6IjhiNTcwNzhiZjFiZDQ1ZGY4M2M0ZDg4ZDE2NzY4ZmJlIiwicHJvZmlsZU5hbWUiOiJNSEZfUGlnIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2E1NjJhMzdiODcxZjk2NGJmYzNlMTMxMWVhNjcyYWFhMDM5ODRhNWRjNDcyMTU0YTM0ZGMyNWFmMTU3ZTM4MmIifX19",
-            EntityType.PIG_ZOMBIE, "eyJ0aW1lc3RhbXAiOjE1NTM1Njg0MDE0OTksInByb2ZpbGVJZCI6IjE4YTJiYjUwMzM0YTQwODQ5MTg0MmMzODAyNTFhMjRiIiwicHJvZmlsZU5hbWUiOiJNSEZfUGlnWm9tYmllIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzkxNmQxNjdjNTc0NGVkMTRlYmMwMmY0NDdmMzI2MTQwNTkzNjJiN2QyZWNiODA4ZmYwNjE2NWQyYzM0M2JlZjIifX19",
+//            EntityType.PIG_ZOMBIE, "eyJ0aW1lc3RhbXAiOjE1NTM1Njg0MDE0OTksInByb2ZpbGVJZCI6IjE4YTJiYjUwMzM0YTQwODQ5MTg0MmMzODAyNTFhMjRiIiwicHJvZmlsZU5hbWUiOiJNSEZfUGlnWm9tYmllIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzkxNmQxNjdjNTc0NGVkMTRlYmMwMmY0NDdmMzI2MTQwNTkzNjJiN2QyZWNiODA4ZmYwNjE2NWQyYzM0M2JlZjIifX19",
             EntityType.SHEEP, "eyJ0aW1lc3RhbXAiOjE1NTM1Njg0MTc2NjcsInByb2ZpbGVJZCI6ImRmYWFkNTUxNGU3ZTQ1YTFhNmY3YzZmYzVlYzgyM2FjIiwicHJvZmlsZU5hbWUiOiJNSEZfU2hlZXAiLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2NhMzhjY2Y0MTdlOTljYTlkNDdlZWIxNWE4YTMwZWRiMTUwN2FhNTJiNjc4YzIyMGM3MTdjNDc0YWE2ZmUzZSJ9fX0=",
             EntityType.SKELETON, "eyJ0aW1lc3RhbXAiOjE1NTM1Njg0MzU3NDUsInByb2ZpbGVJZCI6ImEzZjQyN2E4MThjNTQ5YzVhNGZiNjRjNmUwZTFlMGE4IiwicHJvZmlsZU5hbWUiOiJNSEZfU2tlbGV0b24iLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjI3OTVjM2M2ZjM2ZDY3ZGVjZjlhMzE5NWUxMjgwNDBiZWM1MjI2YjA1NWYyYjE2ZDQ2ZmExOWE5MTgwZTAyMyJ9fX0=",
             EntityType.WITHER_SKULL, "eyJ0aW1lc3RhbXAiOjE1NTM1Njg0NTUyMDAsInByb2ZpbGVJZCI6IjdlZDU3MWE1OWZiODQxNmM4YjlkZmIyZjQ0NmFiNWIyIiwicHJvZmlsZU5hbWUiOiJNSEZfV1NrZWxldG9uIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2JhOTZlOWQ3NmJlZDMwMDkwY2U2ZTJkODQyNTk5NjU5NGVlYzZkNjhhYzg4Y2YwNzM1NmU5ODE0ODM0MjQzZWMifX19",
@@ -49,7 +49,7 @@ public class SkullUtil {
     }
 
     public ItemStack getSkullItem(String texture, UUID uuid, String name) {
-        ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+        ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
         NmsSkullTexture.get().set(skullMeta, name, uuid, texture);
@@ -63,7 +63,7 @@ public class SkullUtil {
     }
 
     public ItemStack getSkullItem(UUID uuid, String name) {
-        ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+        ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
         NmsSkullTexture.get().set(skullMeta, name, uuid);

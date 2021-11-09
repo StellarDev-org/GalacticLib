@@ -20,7 +20,7 @@ public class FallbackSpawnerHandler implements ISpawnerHandler {
 
     @Override
     public ItemStack getSpawnerItem(int amount, EntityType entityType) {
-        ItemStack itemStack = new ItemStack(Material.MOB_SPAWNER, amount);
+        ItemStack itemStack = new ItemStack(Material.SPAWNER, amount);
         BlockStateMeta blockStateMeta = (BlockStateMeta) itemStack.getItemMeta();
         BlockState blockState = blockStateMeta.getBlockState();
 

@@ -76,7 +76,7 @@ public class EngineSilkSpawners extends Engine implements ISpawnerHandler {
 
     @Override
     public ItemStack getSpawnerItem(int amount, EntityType entityType) {
-        if(entityType == null) return new ItemStack(Material.MOB_SPAWNER, amount);
+        if(entityType == null) return new ItemStack(Material.SPAWNER, amount);
 
         String entityName = entityType.name().toLowerCase();
 
@@ -90,7 +90,7 @@ public class EngineSilkSpawners extends Engine implements ISpawnerHandler {
     public enum SpawnerIdToEntityType {
 
         mooshroom(EntityType.MUSHROOM_COW, "mooshroom", "mushroomcow"),
-        pigzombie(EntityType.PIG_ZOMBIE, "zombie_pigman", "pigzombie"),
+//        pigzombie(EntityType.PIG_ZOMBIE, "zombie_pigman", "pigzombie"),
         snowgolem(EntityType.SNOWMAN, "snow_golem");
 
         private final EntityType entityType;
