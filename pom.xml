@@ -170,28 +170,30 @@
             <version>2.10.9</version>
             <scope>compile</scope>
         </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>com.boydti</groupId>
-            <artifactId>fawe-api</artifactId>
-            <version>19.11.13-5505943-1282-22.3.5</version>
-            <scope>compile</scope>
+        <!-- FAWE Core API -->
+        <dependency>
+            <groupId>com.fastasyncworldedit</groupId>
+            <artifactId>FastAsyncWorldEdit-Core</artifactId>
+            <version>1.17-390</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- FAWE Bukkit API -->
+        <dependency>
+            <groupId>com.fastasyncworldedit</groupId>
+            <artifactId>FastAsyncWorldEdit-Bukkit</artifactId>
+            <version>1.17-390</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>FastAsyncWorldEdit-Core</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency> <!-- PROVIDED -->
-            <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-core</artifactId>
-            <version>6.1.4-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-bukkit</artifactId>
-            <version>6.1.4-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency> <!-- PROVIDED -->
-            <groupId>com.sk89q</groupId>
-            <artifactId>worldguard</artifactId>
-            <version>6.1.1-SNAPSHOT</version>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-bukkit</artifactId>
+            <version>7.0.4</version>
             <scope>compile</scope>
         </dependency>
         <dependency> <!-- NOT PROVIDED -->
@@ -285,10 +287,10 @@
         <repository>
             <id>codemc-repo</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
+        </repository><!-- FAWE API-->
         <repository>
-            <id>fawe-repo</id>
-            <url>https://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+            <id>IntellectualSites Releases</id>
+            <url>https://mvn.intellectualsites.com/content/repositories/releases/</url>
         </repository>
         <repository>
             <id>spigot-repo</id>

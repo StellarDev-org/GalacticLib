@@ -1,15 +1,14 @@
 package org.stellardev.galacticlib.integration.fastasyncworldedit;
 
-import com.boydti.fawe.FaweAPI;
+import com.fastasyncworldedit.core.FaweAPI;
 import com.massivecraft.massivecore.Engine;
 import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.blocks.BaseBlock;
-import com.sk89q.worldedit.function.pattern.BlockPattern;
 import com.sk89q.worldedit.function.pattern.RandomPattern;
+import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.world.World;
+import com.sk89q.worldedit.world.block.BaseBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
@@ -45,14 +44,14 @@ public class EngineFastAsyncWorldEdit extends Engine {
     private RandomPattern getPattern(Map<Material, Double> weightMap) {
         RandomPattern pattern = new RandomPattern();
 
-        weightMap.forEach((material, chance) -> pattern.add(new BlockPattern(new BaseBlock(material.getId(), 0)), chance));
+        weightMap.forEach((material, chance) -> pattern.add(new BaseBlock(material.getId(), 0), chance));
 
         return pattern;
     }
 
     private Region getRegion(Location min, Location max) {
-        Vector minVector = Vector.toBlockPoint(min.getX(), min.getY(), min.getZ());
-        Vector maxVector = Vector.toBlockPoint(max.getX(), max.getY(), max.getZ());
+        BlockVector3 minVector = BlockVector3.at(min.getX(), min.getY(), min.getZ());
+        BlockVector3 maxVector = BlockVector3.at(max.getX(), max.getY(), max.getZ());
         World world = FaweAPI.getWorld(min.getWorld().getName());
 
         return new CuboidRegion(world, minVector, maxVector);

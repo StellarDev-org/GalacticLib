@@ -2,9 +2,11 @@ package org.stellardev.galacticlib.integration.worldedit;
 
 import com.massivecraft.massivecore.Engine;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.bukkit.selections.Selection;
+import com.sk89q.worldedit.math.BlockVector3;
+import com.sk89q.worldedit.regions.Region;
+import com.sk89q.worldedit.world.World;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class EngineWorldEdit extends Engine {
@@ -19,7 +21,7 @@ public class EngineWorldEdit extends Engine {
     }
 
     public SelectionWrapper getSelection(Player player) {
-        Selection selection = this.worldEditPlugin.getSelection(player);
+        Region selection = this.worldEditPlugin.getSession(player).getSelection();
 
         if(selection == null) return null;
 
@@ -28,6 +30,14 @@ public class EngineWorldEdit extends Engine {
         if(world == null) return null;
         if(selection.getMinimumPoint() == null || selection.getMaximumPoint() == null) return null;
 
-        return new SelectionWrapper(player, selection.getMinimumPoint(), selection.getMaximumPoint());
+        org.bukkit.World bukkitWorld = this.worldEditPlugin.getServer().getWorld(world.getName());
+
+        BlockVector3 minPoint = selection.getMinimumPoint();
+        Location minimumPoint = new Location(bukkitWorld, minPoint.getBlockX(), minPoint.getBlockY(), minPoint.getBlockZ());
+
+        BlockVector3 maxPoint = selection.getMaximumPoint();
+        Location maximumPoint = new Location(bukkitWorld, maxPoint.getBlockX(), maxPoint.getBlockY(), maxPoint.getBlockZ());
+
+        return new SelectionWrapper(player, minimumPoint, maximumPoint);
     }
 }
